@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinR", "CoinR\CoinR.csproj", "{816DCCA4-50B2-46F9-A635-8E9B7D0EAB81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinRLogic", "CoinRLogic\CoinRLogic.csproj", "{3F05EB1E-00D0-4B77-A4C0-7FB1569A40FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{816DCCA4-50B2-46F9-A635-8E9B7D0EAB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{816DCCA4-50B2-46F9-A635-8E9B7D0EAB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{816DCCA4-50B2-46F9-A635-8E9B7D0EAB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{816DCCA4-50B2-46F9-A635-8E9B7D0EAB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F05EB1E-00D0-4B77-A4C0-7FB1569A40FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F05EB1E-00D0-4B77-A4C0-7FB1569A40FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F05EB1E-00D0-4B77-A4C0-7FB1569A40FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F05EB1E-00D0-4B77-A4C0-7FB1569A40FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/bin/Debug/net6.0/CoinRLogic.deps.json
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/bin/Debug/net6.0/CoinRLogic.dll
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/bin/Debug/net6.0/ref/CoinRLogic.dll
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/bin/Debug/net6.0/CoinRLogic.pdb
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/CoinRLogic.csproj.AssemblyReference.cache
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/CoinRLogic.GeneratedMSBuildEditorConfig.editorconfig
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/CoinRLogic.AssemblyInfoInputs.cache
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/CoinRLogic.AssemblyInfo.cs
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/CoinRLogic.csproj.CoreCompileInputs.cache
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/CoinRLogic.dll
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/ref/CoinRLogic.dll
+/home/heinzerik/RiderProjects/CoinR/CoinRLogic/obj/Debug/net6.0/CoinRLogic.pdb
