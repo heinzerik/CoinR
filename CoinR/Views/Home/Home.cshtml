@@ -1,0 +1,20 @@
+@page
+@using CoinR.Models
+@model CoinR.Views.Home.Home
+
+@{
+    ViewData["Title"] = "CoinR";
+}
+
+@foreach (var currency in Model.cryptoCurrencies)
+{
+    <tr>
+        <td>@currency.name</td>
+        <td>@currency.logo</td>
+        <td>@currency.rating</td>
+        <td>@currency.symbol</td>
+        <td>@currency.symbol</td>
+        <td>@currency.chart</td>
+    </tr>
+}
+
