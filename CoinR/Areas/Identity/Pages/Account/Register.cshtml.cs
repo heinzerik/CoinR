@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Identity.UI.V4.Pages.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace CoinR.Areas.Identity.Pages.Account
@@ -154,11 +155,9 @@ namespace CoinR.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-                
             }
-
             // If we got this far, something failed, redisplay form
-            return RedirectToPage("/Home/Privacy");
+            return Page();
         }
 
         private IdentityUser CreateUser()
