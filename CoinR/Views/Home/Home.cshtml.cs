@@ -8,11 +8,17 @@ namespace CoinR.Views.Home;
 public class Home : PageModel
 {
 
-    public List<CryptoCurrency> cryptoCurrencies = new List<CryptoCurrency>();
+    public static List<CryptoCurrency> cryptoCurrencies = CryptoCurrencyService.GetAll();
 
-    public CryptoCurrency newCryptoCurrency { get; set; } = new();
     public void OnGet()
     {
-        cryptoCurrencies = CryptoCurrencyService.GetAll();
+        // CryptoCurrencyService.GetAll();
+        
+        
+    }
+
+    protected void Page_Load()
+    {
+        // cryptoCurrencies = CryptoCurrencyService.GetAll();
     }
 }

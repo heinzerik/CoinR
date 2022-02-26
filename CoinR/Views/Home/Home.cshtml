@@ -1,20 +1,36 @@
 @page
 @using CoinR.Models
+@using CoinR.Views.Home
 @model CoinR.Views.Home.Home
 
 @{
-    ViewData["Title"] = "CoinR";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+     
 }
-
-@foreach (var currency in Model.cryptoCurrencies)
+<html lang="de">
+@foreach (var currency in Home.cryptoCurrencies)
 {
-    <tr>
-        <td>@currency.name</td>
-        <td>@currency.logo</td>
-        <td>@currency.rating</td>
-        <td>@currency.symbol</td>
-        <td>@currency.symbol</td>
-        <td>@currency.chart</td>
-    </tr>
+@*      *@
+@*     <tr> *@
+@*         <td>@currency.name</td> *@
+@*         <td>@currency.logo</td> *@
+@*         <td>@currency.rating</td> *@
+@*         <td>@currency.symbol</td> *@
+@*         <td>@currency.symbol</td> *@
+@*         <td>@currency.chart</td> *@
+@*     </tr> *@
+     <div class="currencyWrapper">
+          <div class="currencyContainer">
+                    <h1>@currency.name</h1>
+                    <img class = "currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
+                    <p class ="currencyrating" >@currency.rating</p>
+                    <p class = "currencysymbol">@currency.symbol</p>
+                    <div class="currencychart"></div>
+               </div>
+     </div>
+     
+
 }
+</html>
+
 

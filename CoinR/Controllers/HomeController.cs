@@ -36,6 +36,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Home()
+    {
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] //this turns off the cache
     public IActionResult Error()
     {
