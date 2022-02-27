@@ -2,13 +2,14 @@ namespace CoinR.Models;
 
 public class CryptoCurrency
 {
-    public CryptoCurrency(string name, Image logo, Rating rating, string symbol, List<double> chart)
+    public CryptoCurrency(string name, Image logo, Rating rating, string symbol, List<double> chart,String detailslink)
     {
         this.name = name;
         this.logo = logo;
         this.rating = rating;
         this.symbol = symbol;
         this.chart = chart;
+        this.detailslink = detailslink;
     }
 
     public CryptoCurrency()
@@ -25,6 +26,8 @@ public class CryptoCurrency
     public String symbol { get; set; }
 
     public List<double> chart { get; set; }
+
+    public string detailslink { get; set; }
     
     
 }

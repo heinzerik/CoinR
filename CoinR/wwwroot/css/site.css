@@ -73,9 +73,26 @@ nav{
   margin-bottom: 5%;
 }
 
+.detailslink{
+  float: right;
+  color: #FFFA21;
+  transform: rotate(45deg);
+  font-size: 45px;
+  margin-right: 2%;
+  background: none;
+  border: none;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 1199px){
+  .currencyContainer{
+    float: none;
+    width: 70%;
   }
 }
 
@@ -86,7 +103,6 @@ body {
 footer{
   width: 95%;
   height: 5%;
-  background-color: white;
   border-radius: 10px 10px 0px 0px;
   background-color: #FFFA21;
   padding: 10px;
