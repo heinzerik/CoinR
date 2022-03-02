@@ -26,7 +26,7 @@
                <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
                <p class="currencyrating">@currency.rating</p>
                <p class="currencysymbol">@currency.symbol</p>
-               <img src="@{ new Chart(width: 800, height: 200) .AddSeries( chartType: "line", xValue: new[] {10, 20, 30}, yValues: new[] {10, 20, 30}) .Write(); }" class="currencychart"/>
+               @* <img src="@{ new Chart(width: 800, height: 200) .AddSeries( chartType: "line", xValue: new[] {10, 20, 30}, yValues: new[] {10, 20, 30}) .Write(); }" class="currencychart"/> *@
                <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
           </div>
           

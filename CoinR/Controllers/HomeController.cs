@@ -18,7 +18,7 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly ApplicationDbContext _dbContext;
 
-    public HomeController(ILogger<HomeController> logger,ApplicationDbContext dbContext)
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
     {
         _logger = logger;
         _dbContext = dbContext;
@@ -27,10 +27,9 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json",optional:false);
-        
-        
-        
+            .AddJsonFile("appsettings.json", optional: false);
+
+
         return View();
     }
 
@@ -45,10 +44,42 @@ public class HomeController : Controller
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] //this turns off the cache
-
     public IActionResult Bitcoin()
     {
-        return View();
+        Random rnd = new Random();
+        //list of countries  
+        var lstModel = new List<SimpleReportViewModel>();
+        lstModel.Add(new SimpleReportViewModel
+        {
+            DimensionOne = "Brazil",
+            Quantity = rnd.Next(10)
+        });
+        lstModel.Add(new SimpleReportViewModel
+        {
+            DimensionOne = "USA",
+            Quantity = rnd.Next(10)
+        });
+        lstModel.Add(new SimpleReportViewModel
+        {
+            DimensionOne = "Portugal",
+            Quantity = rnd.Next(10)
+        });
+        lstModel.Add(new SimpleReportViewModel
+        {
+            DimensionOne = "Russia",
+            Quantity = rnd.Next(10)
+        });
+        lstModel.Add(new SimpleReportViewModel
+        {
+            DimensionOne = "Ireland",
+            Quantity = rnd.Next(10)
+        });
+        lstModel.Add(new SimpleReportViewModel
+        {
+            DimensionOne = "Germany",
+            Quantity = rnd.Next(10)
+        });
+        return View(lstModel);
     }
 
     public IActionResult Ethereum()
@@ -60,10 +91,10 @@ public class HomeController : Controller
     {
         return View();
     }
+
     public IActionResult Error()
     {
         return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
     }
 
-    public IActionResult 
 }

@@ -300,4 +300,3 @@
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/System.Web.WebPages.Razor.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/System.Web.WebPages.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/Microsoft.Web.Infrastructure.dll
-/home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/System.Web.Mvc.dll
