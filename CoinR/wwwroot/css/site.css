@@ -81,6 +81,7 @@ nav{
   margin-right: 2%;
   background: none;
   border: none;
+  z-index: -1;
 }
 
 @media (min-width: 768px) {

@@ -1,13 +1,12 @@
-@page
-@using CoinR.Models
 @using CoinR.Views.Home
-@using Microsoft.EntityFrameworkCore.Storage
-@model CoinR.Views.Home.Home
-
+@model List<SimpleReportViewModel>
 @{
-     Layout = "~/Views/Shared/_Layout.cshtml";
-     
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    var XLabels = "[10,20,30,40]";//;Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.DimensionOne).ToList())};
+    var YValues = "[10,20,30,40]"; //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
+
 }
+<!DOCTYPE html>
 <html lang="de">
 @foreach (var currency in Home.cryptoCurrencies)
 {
@@ -20,20 +19,95 @@
 @*         <td>@currency.symbol</td> *@
 @*         <td>@currency.chart</td> *@
 @*     </tr> *@
-     <div class="currencyWrapper">
-          <div class="currencyContainer">
-               <h1>@currency.name</h1>
-               <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
-               <p class="currencyrating">@currency.rating</p>
-               <p class="currencysymbol">@currency.symbol</p>
-               @* <img src="@{ new Chart(width: 800, height: 200) .AddSeries( chartType: "line", xValue: new[] {10, 20, 30}, yValues: new[] {10, 20, 30}) .Write(); }" class="currencychart"/> *@
-               <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
-          </div>
-          
-     </div>
+    <div class="currencyWrapper">
+        <div class="currencyContainer">
+            <h1>@currency.name</h1>
+            <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
+            <p class="currencyrating">@currency.rating</p>
+            <p class="currencysymbol">@currency.symbol</p>
+            @* <img src="@{ new Chart(width: 800, height: 200) .AddSeries( chartType: "line", xValue: new[] {10, 20, 30}, yValues: new[] {10, 20, 30}) .Write(); }" class="currencychart"/> *@
+            <div class="chart-container currencychart">
+                <canvas id="chart" style="width:100%; height:300px"></canvas>
+            </div>
+            <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
+        </div>
 
-
+    </div>
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">  
+            $(function () {  
+        var chartName = "chart";  
+            var ctx = document.getElementById(chartName).getContext('2d');  
+            var data = {  
+                    labels: @Html.Raw(XLabels),  
+                    datasets: [{  
+                        label: "Countries Chart",  
+                        backgroundColor: [  
+                            'rgba(255, 99, 132, 0.2)',  
+                            'rgba(54, 162, 235, 0.2)',  
+                            'rgba(255, 206, 86, 0.2)',  
+                            'rgba(75, 192, 192, 0.2)',  
+                            'rgba(153, 102, 255, 0.2)',  
+                            'rgba(255, 159, 64, 0.2)',  
+                            'rgba(255, 0, 0)',  
+                            'rgba(0, 255, 0)',  
+                            'rgba(0, 0, 255)',  
+                            'rgba(192, 192, 192)',  
+                            'rgba(255, 255, 0)',  
+                            'rgba(255, 0, 255)'  
+                        ],  
+                        borderColor: [  
+                            'rgba(255,99,132,1)',  
+                            'rgba(54, 162, 235, 1)',  
+                            'rgba(255, 206, 86, 1)',  
+                            'rgba(75, 192, 192, 1)',  
+                            'rgba(153, 102, 255, 1)',  
+                            'rgba(255, 159, 64, 1)',  
+                            'rgba(255, 0, 0)',  
+                            'rgba(0, 255, 0)',  
+                            'rgba(0, 0, 255)',  
+                            'rgba(192, 192, 192)',  
+                            'rgba(255, 255, 0)',  
+                            'rgba(255, 0, 255)'  
+                        ],  
+                        borderWidth: 1,  
+                        data: @Html.Raw(YValues)  
+        }]  
+                };  
+      
+    var options = {  
+                    maintainAspectRatio: false,  
+                    scales: {  
+                        yAxes: [{  
+                            ticks: {  
+                                min: 0,  
+                                beginAtZero: true  
+                            },  
+                            gridLines: {  
+                                display: true,  
+                                color: "rgba(255,99,164,0.2)"  
+                            }  
+    }],  
+                        xAxes: [{  
+                            ticks: {  
+                                min: 0,  
+                                beginAtZero: true  
+                            },  
+                            gridLines: {  
+                                display: false  
+                            }  
+                        }]  
+                    }  
+                };  
+      
+           var myChart = new  Chart(ctx, {  
+                    options: options,  
+                    data: data,  
+                    type:'line'  
+      
+                });  
+            });  
+    </script>
 </html>
-
-
