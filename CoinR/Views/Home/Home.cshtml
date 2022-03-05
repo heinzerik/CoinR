@@ -6,7 +6,6 @@
     <html lang="de">
     @foreach (var currency in Home.cryptoCurrencies)
     {
-
         var XLabels = currency.getChartString(); //;Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.DimensionOne).ToList())};
         var YValues = currency.getChartString(); //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
 @*      *@
@@ -24,10 +23,9 @@
                 <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
                 <p class="currencyrating">@currency.rating</p>
                 <p class="currencysymbol">@currency.symbol</p>
-                @* <img src="@{ new Chart(width: 800, height: 200) .AddSeries( chartType: "line", xValue: new[] {10, 20, 30}, yValues: new[] {10, 20, 30}) .Write(); }" class="currencychart"/> *@
-                <div class="chart-container currencychart">
-                    <canvas id="chart" style="width:100%; height:300px"></canvas>
-                </div>
+                    <div class="chart-container currencychart">
+                        <canvas id=@currency.chartname style="width:100%" class="@currency.name"></canvas>
+                    </div>
                 <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
             </div>
 
@@ -104,11 +102,14 @@
                     options: options,  
                     data: data,  
                     type:'line'  
-      
-                });  
-            });  
+
+                }); 
+         
+
+            });
+            
     </script>
     }
     </html>
-    
+
 }

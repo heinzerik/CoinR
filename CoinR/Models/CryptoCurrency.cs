@@ -2,7 +2,7 @@ namespace CoinR.Models;
 
 public class CryptoCurrency
 {
-    public CryptoCurrency(string name, Image logo, Rating rating, string symbol, List<String> chart,String detailslink)
+    public CryptoCurrency(string name, Image logo, Rating rating, string symbol, List<String> chart,String detailslink,string chartname)
     {
         this.name = name;
         this.logo = logo;
@@ -10,6 +10,7 @@ public class CryptoCurrency
         this.symbol = symbol;
         this.chart = chart;
         this.detailslink = detailslink;
+        this.chartname = chartname;
     }
 
     public CryptoCurrency()
@@ -29,6 +30,8 @@ public class CryptoCurrency
 
     public string detailslink { get; set; }
 
+    public string chartname { get; set; }
+
     public String getChartString()
     {
         String chartvals = "";
@@ -40,11 +43,11 @@ public class CryptoCurrency
                 chartvals += "["+i+",";
             }
 
-            if (i == chart.Count - 1)
+            if (i == chart.Count-1)
             {
                 chartvals += ""+ i + "]";
             }
-            else
+            else if(i != 0 && i != chart.Count-1)
             {
                 chartvals += i + ",";
             }
