@@ -2,14 +2,13 @@
 @model List<SimpleReportViewModel>
 @{
     // Layout = "~/Views/Shared/_Layout.cshtml";
-    var XLabels = "[10,20,30,40]";//;Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.DimensionOne).ToList())};
-    var YValues = "[10,20,30,40]"; //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
 
-}
-<!DOCTYPE html>
-<html lang="de">
-@foreach (var currency in Home.cryptoCurrencies)
-{
+    <html lang="de">
+    @foreach (var currency in Home.cryptoCurrencies)
+    {
+
+        var XLabels = currency.getChartString(); //;Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.DimensionOne).ToList())};
+        var YValues = currency.getChartString(); //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
 @*      *@
 @*     <tr> *@
 @*         <td>@currency.name</td> *@
@@ -19,24 +18,23 @@
 @*         <td>@currency.symbol</td> *@
 @*         <td>@currency.chart</td> *@
 @*     </tr> *@
-    <div class="currencyWrapper">
-        <div class="currencyContainer">
-            <h1>@currency.name</h1>
-            <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
-            <p class="currencyrating">@currency.rating</p>
-            <p class="currencysymbol">@currency.symbol</p>
-            @* <img src="@{ new Chart(width: 800, height: 200) .AddSeries( chartType: "line", xValue: new[] {10, 20, 30}, yValues: new[] {10, 20, 30}) .Write(); }" class="currencychart"/> *@
-            <div class="chart-container currencychart">
-                <canvas id="chart" style="width:100%; height:300px"></canvas>
+        <div class="currencyWrapper">
+            <div class="currencyContainer">
+                <h1>@currency.name</h1>
+                <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
+                <p class="currencyrating">@currency.rating</p>
+                <p class="currencysymbol">@currency.symbol</p>
+                @* <img src="@{ new Chart(width: 800, height: 200) .AddSeries( chartType: "line", xValue: new[] {10, 20, 30}, yValues: new[] {10, 20, 30}) .Write(); }" class="currencychart"/> *@
+                <div class="chart-container currencychart">
+                    <canvas id="chart" style="width:100%; height:300px"></canvas>
+                </div>
+                <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
             </div>
-            <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
-        </div>
 
-    </div>
-}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">  
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">  
             $(function () {  
         var chartName = "chart";  
             var ctx = document.getElementById(chartName).getContext('2d');  
@@ -110,4 +108,7 @@
                 });  
             });  
     </script>
-</html>
+    }
+    </html>
+    
+}
