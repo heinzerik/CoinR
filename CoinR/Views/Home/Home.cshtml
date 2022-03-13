@@ -24,7 +24,7 @@
                 <p class="currencyrating">@currency.rating</p>
                 <p class="currencysymbol">@currency.symbol</p>
                     <div class="chart-container currencychart">
-                        <canvas id=@currency.chartname class =@currency.chartname style="width:100%" class="@currency.name"></canvas>
+                        <canvas class =@currency.chartname style="width:100%" class="@currency.name"></canvas>
                     </div>
                 <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
             </div>
