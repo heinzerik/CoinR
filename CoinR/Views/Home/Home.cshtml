@@ -98,13 +98,15 @@
                     }  
                 };  
                 
-    
-                var myChart = new  Chart(ctx[0].getContext('2d'), {  
-                                    options: options,  
-                                    data: data,  
-                                    type:'line'  
-                
-                                }); 
+                for (let i = 0; i < ctx.length;i++){
+                new  Chart(ctx[i].getContext('2d'), {  
+                                                    options: options,  
+                                                    data: data,  
+                                                    type:'line'  
+                                
+                                                });     
+                }
+          
            
          
 
