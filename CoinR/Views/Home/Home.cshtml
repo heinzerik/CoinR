@@ -1,110 +1,121 @@
 @using CoinR.Views.Home
+@using System.Runtime.CompilerServices
 @model List<SimpleReportViewModel>
 @{
     // Layout = "~/Views/Shared/_Layout.cshtml";
 
     <html lang="de">
+
+
+    @*      *@
+    @*     <tr> *@
+    @*         <td>@currency.name</td> *@
+    @*         <td>@currency.logo</td> *@
+    @*         <td>@currency.rating</td> *@
+    @*         <td>@currency.symbol</td> *@
+    @*         <td>@currency.symbol</td> *@
+    @*         <td>@currency.chart</td> *@
+    @*     </tr> *@
     @foreach (var currency in Home.cryptoCurrencies)
     {
         var XLabels = currency.getChartString(); //;Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.DimensionOne).ToList())};
-        var YValues = currency.getChartString(); //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
-@*      *@
-@*     <tr> *@
-@*         <td>@currency.name</td> *@
-@*         <td>@currency.logo</td> *@
-@*         <td>@currency.rating</td> *@
-@*         <td>@currency.symbol</td> *@
-@*         <td>@currency.symbol</td> *@
-@*         <td>@currency.chart</td> *@
-@*     </tr> *@
+        string YValues = currency.getChartString(); //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
         <div class="currencyWrapper">
             <div class="currencyContainer">
                 <h1>@currency.name</h1>
                 <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
                 <p class="currencyrating">@currency.rating</p>
                 <p class="currencysymbol">@currency.symbol</p>
-                    <div class="chart-container currencychart">
-                        <canvas class =@currency.chartname style="width:100%" class="@currency.name"></canvas>
-                    </div>
+                <div class="chart-container currencychart">
+                    <canvas class=@currency.chartname style="width:100%" class="@currency.name" id="@currency.getChartString()"></canvas>
+                </div>
                 <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
             </div>
 
         </div>
+        
+    }
+        </html>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript">  
             $(function () {  
         var chartName = "chart";  
-            var ctx = document.getElementsByClassName(chartName);  
-            var data = {  
-                    labels: @Html.Raw(XLabels),  
-                    datasets: [{  
-                        label: "Countries Chart",  
-                        backgroundColor: [  
-                            'rgba(255, 99, 132, 0.2)',  
-                            'rgba(54, 162, 235, 0.2)',  
-                            'rgba(255, 206, 86, 0.2)',  
-                            'rgba(75, 192, 192, 0.2)',  
-                            'rgba(153, 102, 255, 0.2)',  
-                            'rgba(255, 159, 64, 0.2)',  
-                            'rgba(255, 0, 0)',  
-                            'rgba(0, 255, 0)',  
-                            'rgba(0, 0, 255)',  
-                            'rgba(192, 192, 192)',  
-                            'rgba(255, 255, 0)',  
-                            'rgba(255, 0, 255)'  
-                        ],  
-                        borderColor: [  
-                            'rgba(255,99,132,1)',  
-                            'rgba(54, 162, 235, 1)',  
-                            'rgba(255, 206, 86, 1)',  
-                            'rgba(75, 192, 192, 1)',  
-                            'rgba(153, 102, 255, 1)',  
-                            'rgba(255, 159, 64, 1)',  
-                            'rgba(255, 0, 0)',  
-                            'rgba(0, 255, 0)',  
-                            'rgba(0, 0, 255)',  
-                            'rgba(192, 192, 192)',  
-                            'rgba(255, 255, 0)',  
-                            'rgba(255, 0, 255)'  
-                        ],  
-                        borderWidth: 1,  
-                        data: @Html.Raw(YValues)  
-        }]  
-                };  
-      
-    var options = {  
-                    maintainAspectRatio: false,  
-                    scales: {  
-                        yAxes: [{  
-                            ticks: {  
-                                min: 0,  
-                                beginAtZero: true  
-                            },  
-                            gridLines: {  
-                                display: true,  
-                                color: "rgba(255,99,164,0.2)"  
-                            }  
-    }],  
-                        xAxes: [{  
-                            ticks: {  
-                                min: 0,  
-                                beginAtZero: true  
-                            },  
-                            gridLines: {  
-                                display: false  
-                            }  
-                        }]  
-                    }  
-                };  
-                
+            
+ 
+                var ctx = document.getElementsByClassName(chartName); 
                 for (let i = 0; i < ctx.length;i++){
+                    let array = @Html.Raw(Home.getCurrenciesStringList());
+                                var data = {  
+                                        labels: @Html.Raw("[\"1\",\"2\",\"3\",\"4\"]"),  
+                                        datasets: [{  
+                                            label: "Countries Chart",  
+                                            backgroundColor: [  
+                                                'rgba(255, 99, 132, 0.2)',  
+                                                'rgba(54, 162, 235, 0.2)',  
+                                                'rgba(255, 206, 86, 0.2)',  
+                                                'rgba(75, 192, 192, 0.2)',  
+                                                'rgba(153, 102, 255, 0.2)',  
+                                                'rgba(255, 159, 64, 0.2)',  
+                                                'rgba(255, 0, 0)',  
+                                                'rgba(0, 255, 0)',  
+                                                'rgba(0, 0, 255)',  
+                                                'rgba(192, 192, 192)',  
+                                                'rgba(255, 255, 0)',  
+                                                'rgba(255, 0, 255)'  
+                                            ],  
+                                            borderColor: [  
+                                                'rgba(255,99,132,1)',  
+                                                'rgba(54, 162, 235, 1)',  
+                                                'rgba(255, 206, 86, 1)',  
+                                                'rgba(75, 192, 192, 1)',  
+                                                'rgba(153, 102, 255, 1)',  
+                                                'rgba(255, 159, 64, 1)',  
+                                                'rgba(255, 0, 0)',  
+                                                'rgba(0, 255, 0)',  
+                                                'rgba(0, 0, 255)',  
+                                                'rgba(192, 192, 192)',  
+                                                'rgba(255, 255, 0)',  
+                                                'rgba(255, 0, 255)'  
+                                            ],  
+                                            borderWidth: 1,
+                                            data: array[i],
+                                                                       
+                                        }]  
+                                    };  
+                          
+                        var options = {  
+                                        maintainAspectRatio: false,  
+                                        scales: {  
+                                            yAxes: [{  
+                                                ticks: {  
+                                                    min: 0,  
+                                                    beginAtZero: true  
+                                                },  
+                                                gridLines: {  
+                                                    display: true,  
+                                                    color: "rgba(255,99,164,0.2)"  
+                                                }  
+                        }],  
+                                            xAxes: [{  
+                                                ticks: {  
+                                                    min: 0,  
+                                                    beginAtZero: true  
+                                                },  
+                                                gridLines: {  
+                                                    display: false  
+                                                }  
+                                            }]  
+                                        }  
+                                    }; 
                 new  Chart(ctx[i].getContext('2d'), {  
                                                     options: options,  
-                                                    data: data,  
+                                                    data: data,
                                                     type:'line'  
                                 
-                                                });     
+                                                });
+                console.log(data);
                 }
           
            
@@ -113,7 +124,5 @@
             });
             
     </script>
+    
     }
-    </html>
-
-}

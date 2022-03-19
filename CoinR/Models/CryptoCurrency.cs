@@ -40,16 +40,16 @@ public class CryptoCurrency
         {
             if (i == 0)
             {
-                chartvals += "["+i+",";
+                chartvals += "["+chart[i]+",";
             }
 
             if (i == chart.Count-1)
             {
-                chartvals += ""+ i + "]";
+                chartvals += ""+ chart[i] + "]";
             }
             else if(i != 0 && i != chart.Count-1)
             {
-                chartvals += i + ",";
+                chartvals += chart[i] + ",";
             }
         }
 
