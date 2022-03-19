@@ -45,12 +45,13 @@
             
  
                 var ctx = document.getElementsByClassName(chartName); 
+                let nameslist = @Html.Raw(Home.getCurrenciesNames());
                 for (let i = 0; i < ctx.length;i++){
                     let array = @Html.Raw(Home.getCurrenciesStringList());
                                 var data = {  
                                         labels: @Html.Raw("[\"1\",\"2\",\"3\",\"4\"]"),  
                                         datasets: [{  
-                                            label: "Countries Chart",  
+                                            label: nameslist[i]+"chart",  
                                             backgroundColor: [  
                                                 'rgba(255, 99, 132, 0.2)',  
                                                 'rgba(54, 162, 235, 0.2)',  

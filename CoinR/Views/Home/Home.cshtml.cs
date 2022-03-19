@@ -50,6 +50,30 @@ public class Home : PageModel
 
         return valuesListString;
     }
+
+    public static string getCurrenciesNames()
+    {
+        List<CryptoCurrency> currenciesList = CryptoCurrencyService.GetAll();
+        String nameslistString = "";
+
+        for (int i = 0; i < currenciesList.Count; i++)
+        {
+            if (i == 0)
+            {
+                nameslistString += "[\"" + currenciesList[i].name + "\",";
+            }
+            else if (i == currenciesList.Count - 1)
+            {
+                nameslistString += "\"" + currenciesList[i].name + "\"]";
+            }
+            else
+            {
+                nameslistString += "\"" + currenciesList[i].name + "\",";
+            }
+        }
+
+        return nameslistString;
+    }
     protected void Page_Load()
     {
         // cryptoCurrencies = CryptoCurrencyService.GetAll();
