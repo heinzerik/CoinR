@@ -52,14 +52,12 @@
                                         labels: @Html.Raw("[\"1\",\"2\",\"3\",\"4\"]"),  
                                         datasets: [{  
                                             label: nameslist[i]+"chart",
-                                            labelColor:[
-                                                "rgb(225,225,5,0.5)" 
-                                            ],  
                                             backgroundColor: [  
-                                                "rgb(225,225,5,0.5)"  
+                                                "rgb(225,225,5,0.5)",  
                                             ],  
                                             borderColor: [  
-                                                "rgb(225,225,5)"   
+                                                "rgb(225,225,5)",
+                                                "rgb(225,225,5,0.5)"    
                                             ],  
                                             borderWidth: 1,
                                             data: array[i],
@@ -68,7 +66,7 @@
                                     };  
                           
                         var options = {  
-                                        maintainAspectRatio: false,  
+                                        maintainAspectRatio: false,
                                         scales: {  
                                             yAxes: [{  
                                                 ticks: {  
@@ -78,7 +76,7 @@
                                                 gridLines: {  
                                                     display: true,  
                                                     color: "rgb(225,225,5,0.5)"  
-                                                }  
+                                                },
                         }],  
                                             xAxes: [{  
                                                 ticks: {  
