@@ -3,7 +3,7 @@
 @model Home
 @{
     // Layout = "~/Views/Shared/_Layout.cshtml";
-
+    ViewData["Title"]="Home";
     <html lang="de">
 
 
@@ -27,7 +27,7 @@
                 <p class="currencyrating">@currency.rating</p>
                 <p class="currencysymbol">@currency.symbol</p>
                 <div class="chart-container currencychart">
-                    <canvas class=@currency.chartname style="width:100%" class="@currency.name"></canvas>
+                    <canvas class="@currency.chartname"></canvas>
                 </div>
                 <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action("Currencydetails", "Home",new { currency=@currency.detailslink}) + "'");"/>
             </div>
