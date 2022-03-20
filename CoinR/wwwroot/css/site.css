@@ -3,7 +3,6 @@ html {
   flex-direction: row;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 .headline{
@@ -70,6 +69,7 @@ nav{
 .login-wrapper{
   background-color: #939393;
   border-radius: 0px 0px 10px 0px;
+  margin-bottom: 5%;
 
 }
 
@@ -159,6 +159,7 @@ nav{
 
   .login-wrapper{
     width: 80%;
+    margin-bottom: 10%;
   }
   .login-section{
     margin: 10% 10%;
@@ -177,4 +178,5 @@ footer{
   border-radius: 10px 10px 0px 0px;
   background-color: #FFFA21;
   padding: 10px;
+  margin-top:5%;
 }
