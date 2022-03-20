@@ -126,12 +126,19 @@ nav{
 }
 
 .currencychart{
-  position: relative;
   background-color: #515151;
   width: 85%;
   height: 200px;
   margin: auto;
   margin-bottom: 5%;
+}
+
+.currencychartdetail{
+  width: 90%;
+  height: 500px;
+  background-color: #515151;
+  border-radius: 0px 0px 10px 10px;
+  margin-left: 5%;
 }
 
 .detailslink{
@@ -143,6 +150,20 @@ nav{
   background: none;
   border: none;
   z-index: -1;
+}
+
+.left{
+  float: left;
+  width: 50%;
+}
+
+.right{
+  float: right;
+  width: 50%;
+}
+.chartcontainer{
+  float: left;
+  width: 100%;
 }
 
 @media (min-width: 768px) {

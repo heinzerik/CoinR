@@ -14,11 +14,42 @@ public class Currencydetails : PageModel
     {
         _currency = currency;
     }
-    
-    public void OnGet([FromRoute] String currency)
+
+
+    public static String getCurrencName()
     {
-        Console.WriteLine(currency);
+       return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault();
     }
+
+    public static string getCurrencyLogo()
+    {
+       string imgpath = Path.GetFullPath(cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.logo.pathToImg).FirstOrDefault());
+       return "";
+    }
+
+    public static string getCurrencyRating()
+    {
+        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.rating).FirstOrDefault().ToString();
+    }
+
+    public static List<String> getCurrencyChart()
+    {
+        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.chart).FirstOrDefault();
+    }
+
+    public static string getPredictionPrice()
+    {
+        //implement
+        return "27€";
+    }
+
+    public static string getChartName()
+    {
+        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.chartname).FirstOrDefault();
+
+    }
+    
+    
 
     
     

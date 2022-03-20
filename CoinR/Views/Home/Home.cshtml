@@ -26,7 +26,7 @@
                 <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
                 <p class="currencyrating">@currency.rating</p>
                 <p class="currencysymbol">@currency.symbol</p>
-                <div class="chart-container currencychart">
+                <div class="currencychart">
                     <canvas class="@currency.chartname"></canvas>
                 </div>
                 <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action("Currencydetails", "Home",new { currency=@currency.detailslink}) + "'");"/>

@@ -3,7 +3,7 @@
 @model CoinR.Views.Home.Currencydetails
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,8 +13,88 @@
     <title>@Currencydetails._currency</title>
 </head>
 <body>
-<div>
-    
+<div class="left">
+    <h1>@Currencydetails.getCurrencName()</h1>
+    <img src="@Currencydetails.getCurrencyLogo()"/>
+    <p>RATING</p>
+    <p>@Currencydetails.getCurrencyRating()</p>
 </div>
+<div class="right">
+    <h3>Prediction</h3>
+    <p>PRICE</p>
+    <button value="BUY PREDICTION"/>
+</div>
+<div class="chartcontainer">
+    <div class="currencychartdetail">
+        <canvas class="chart"></canvas>
+    </div>
+</div>
+
+
 </body>
+<script type="text/javascript">  
+            $(function () {  
+        var chartName = "chart";  
+            
+ 
+                var ctx = document.getElementsByClassName(chartName); 
+                let nameslist = @Html.Raw(Home.getCurrenciesNames());
+                for (let i = 0; i < ctx.length;i++){
+                    let array = @Html.Raw(Home.getCurrenciesStringList());
+                                var data = {  
+                                        labels: @Html.Raw("[\"1\",\"2\",\"3\",\"4\"]"),  
+                                        datasets: [{  
+                                            label: nameslist[i]+"chart",
+                                            backgroundColor: [  
+                                                "rgb(225,225,5,0.5)",  
+                                            ],  
+                                            borderColor: [  
+                                                "rgb(225,225,5)",
+                                                "rgb(225,225,5,0.5)"    
+                                            ],  
+                                            borderWidth: 1,
+                                            data: array[i],
+                                                                       
+                                        }]  
+                                    };  
+                          
+                        var options = {  
+                                        maintainAspectRatio: false,
+                                        scales: {  
+                                            yAxes: [{  
+                                                ticks: {  
+                                                    min: 0,  
+                                                    beginAtZero: true  
+                                                },  
+                                                gridLines: {  
+                                                    display: true,  
+                                                    color: "rgb(225,225,5,0.5)"  
+                                                },
+                        }],  
+                                            xAxes: [{  
+                                                ticks: {  
+                                                    min: 0,  
+                                                    beginAtZero: true  
+                                                },  
+                                                gridLines: {  
+                                                    display: false  
+                                                }  
+                                            }]  
+                                        }  
+                                    }; 
+                new  Chart(ctx[i].getContext('2d'), {  
+                                                    options: options,  
+                                                    data: data,
+                                                    type:'line'  
+                                
+                                                });
+                console.log(data);
+                }
+          
+           
+         
+
+            });
+            
+    </script>
 </html>
