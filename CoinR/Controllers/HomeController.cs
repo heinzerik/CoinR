@@ -5,6 +5,7 @@ using System.Xml.Schema;
 using CoinR.Data;
 using Microsoft.AspNetCore.Mvc;
 using CoinR.Models;
+using CoinR.Views.Home;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -94,6 +95,12 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Currencydetails([FromQuery]String currency)
+    {
+        
+        var viewmodel = new Currencydetails(currency);
+        return View(viewmodel);
+    }
     public IActionResult Error()
     {
         return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});

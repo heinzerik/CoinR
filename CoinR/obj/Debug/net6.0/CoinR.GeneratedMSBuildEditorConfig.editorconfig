@@ -175,6 +175,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9CaXRjb2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/heinzerik/RiderProjects/CoinR/CoinR/Views/Home/Currencydetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DdXJyZW5jeWRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/heinzerik/RiderProjects/CoinR/CoinR/Views/Home/Ethereum.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FdGhlcmV1bS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

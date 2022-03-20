@@ -1,6 +1,6 @@
 @using CoinR.Views.Home
 @using System.Runtime.CompilerServices
-@model List<SimpleReportViewModel>
+@model Home
 @{
     // Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -29,7 +29,7 @@
                 <div class="chart-container currencychart">
                     <canvas class=@currency.chartname style="width:100%" class="@currency.name"></canvas>
                 </div>
-                <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action(@currency.detailslink, "Home") + "'");"/>
+                <asp:LinkButton class="detailslink fas fa-angle-right" onclick="@("window.location.href='" + @Url.Action("Currencydetails", "Home",new { currency=@currency.detailslink}) + "'");"/>
             </div>
 
         </div>
