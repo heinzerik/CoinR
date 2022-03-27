@@ -37,14 +37,14 @@
         var chartName = "chart";  
             
  
-                var ctx = document.getElementsByClassName(chartName); 
+                var ctx = document.getElementsByClassName(chartName)[0]; 
                 let nameslist = @Html.Raw(Home.getCurrenciesNames());
-                    let array = @Html.Raw(Home.getCurrenciesStringList());
+                    let array = @Html.Raw(Currencydetails.getCurrencyChart());
                     console.log(array);
                                 var data = {  
                                         labels: @Html.Raw("[\"1\",\"2\",\"3\",\"4\"]"),  
                                         datasets: [{  
-                                            label: nameslist[i]+"chart",
+                                            label: nameslist[1]+"chart",
                                             backgroundColor: [  
                                                 "rgb(225,225,5,0.5)",  
                                             ],  
@@ -53,7 +53,7 @@
                                                 "rgb(225,225,5,0.5)"    
                                             ],  
                                             borderWidth: 1,
-                                            data: array[1],
+                                            data: array,
                                                                        
                                         }]  
                                     };  

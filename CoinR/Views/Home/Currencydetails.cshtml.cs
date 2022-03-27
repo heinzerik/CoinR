@@ -10,6 +10,9 @@ public class Currencydetails : PageModel
     public static List<CryptoCurrency> cryptoCurrencies = CryptoCurrencyService.GetAll();
 
     public static string _currency { get; set; }
+
+    public CryptoCurrency cryptoCurrency;
+    
     public Currencydetails(string currency)
     {
         _currency = currency;
@@ -32,9 +35,9 @@ public class Currencydetails : PageModel
         return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.rating).FirstOrDefault().ToString();
     }
 
-    public static List<String> getCurrencyChart()
+    public static String getCurrencyChart()
     {
-        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.chart).FirstOrDefault();
+        return (cryptoCurrencies.Where(x => x.detailslink == _currency).FirstOrDefault()).getChartString();
     }
 
     public static string getPredictionPrice()
@@ -49,9 +52,28 @@ public class Currencydetails : PageModel
 
     }
     
-    
+    public static String getChartString(List<String> chart)
+    {
+        String chartvals = "";
 
-    
-    
-    
+        for (int i = 0; i < chart.Count; i++)
+        {
+            if (i == 0)
+            {
+                chartvals += "["+chart[i]+",";
+            }
+
+            if (i == chart.Count-1)
+            {
+                chartvals += ""+ chart[i] + "]";
+            }
+            else if(i != 0 && i != chart.Count-1)
+            {
+                chartvals += chart[i] + ",";
+            }
+        }
+
+        return chartvals;
+    }
+
 }

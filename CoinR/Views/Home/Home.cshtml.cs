@@ -28,7 +28,7 @@ public class Home : PageModel
         Response.Redirect("http://www.google.com");
     }
 
-    public static string getCurrenciesStringList()
+    public static string getCurrenciesChartStringList()
     {
         List<CryptoCurrency> currenciesList = CryptoCurrencyService.GetAll();
         String valuesListString = "";
@@ -36,15 +36,15 @@ public class Home : PageModel
         {
             if (i == 0)
             {
-                valuesListString += "[" + cryptoCurrencies[i].getChartString() + ",";
+                valuesListString += "[" + cryptoCurrencies[i].getChartStringPreview() + ",";
             }
             else if (i == currenciesList.Count - 1)
             {
-                valuesListString += cryptoCurrencies[i].getChartString()+ "]";
+                valuesListString += cryptoCurrencies[i].getChartStringPreview()+ "]";
             }
             else
             {
-                valuesListString += cryptoCurrencies[i].getChartString() + ",";
+                valuesListString += cryptoCurrencies[i].getChartStringPreview() + ",";
             }
         }
 
