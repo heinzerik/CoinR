@@ -36,15 +36,15 @@ public class Home : PageModel
         {
             if (i == 0)
             {
-                valuesListString += "[" + cryptoCurrencies[i].getChartStringPreview() + ",";
+                valuesListString += "[" + cryptoCurrencies[i].getChartsStringPreview() + ",";
             }
             else if (i == currenciesList.Count - 1)
             {
-                valuesListString += cryptoCurrencies[i].getChartStringPreview()+ "]";
+                valuesListString += cryptoCurrencies[i].getChartsStringPreview()+ "]";
             }
             else
             {
-                valuesListString += cryptoCurrencies[i].getChartStringPreview() + ",";
+                valuesListString += cryptoCurrencies[i].getChartsStringPreview() + ",";
             }
         }
 
@@ -73,6 +73,29 @@ public class Home : PageModel
         }
 
         return nameslistString;
+    }
+
+    public static String generateLabels(int count)
+    {
+        string label = "";
+        for (int i = 0; i < count; i++)
+        {
+            if (i == 0)
+            {
+                label += "["+i+",";
+            }
+
+            if (i == count-1)
+            {
+                label += ""+ i + "]";
+            }
+            else if(i != 0 && i != count-1)
+            {
+                label += i + ",";
+            }
+        }
+
+        return label;
     }
     protected void Page_Load()
     {

@@ -18,8 +18,8 @@
     @*     </tr> *@
     @foreach (var currency in Home.cryptoCurrencies)
     {
-        var XLabels = currency.getChartString(); //;Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.DimensionOne).ToList())};
-        string YValues = currency.getChartString(); //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
+        var XLabels = currency.getChartsStringPreview(); //;Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.DimensionOne).ToList())};
+        string YValues = currency.getChartsStringPreview(); //Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Quantity).ToList());
         <div class="currencyWrapper">
             <div class="currencyContainer">
                 <h1>@currency.name</h1>

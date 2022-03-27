@@ -39,6 +39,11 @@ public class Currencydetails : PageModel
     {
         return (cryptoCurrencies.Where(x => x.detailslink == _currency).FirstOrDefault()).getChartString();
     }
+    
+    public static int getCurrencyChartCount()
+    {
+        return (cryptoCurrencies.Where(x => x.detailslink == _currency).FirstOrDefault()).chartname.Length +1;
+    }
 
     public static string getPredictionPrice()
     {
@@ -52,28 +57,6 @@ public class Currencydetails : PageModel
 
     }
     
-    public static String getChartString(List<String> chart)
-    {
-        String chartvals = "";
-
-        for (int i = 0; i < chart.Count; i++)
-        {
-            if (i == 0)
-            {
-                chartvals += "["+chart[i]+",";
-            }
-
-            if (i == chart.Count-1)
-            {
-                chartvals += ""+ chart[i] + "]";
-            }
-            else if(i != 0 && i != chart.Count-1)
-            {
-                chartvals += chart[i] + ",";
-            }
-        }
-
-        return chartvals;
-    }
+    
 
 }

@@ -32,10 +32,56 @@ public class CryptoCurrency
 
     public string chartname { get; set; }
 
-    public String getChartString()
+    public String getChartsStringPreview()
     {
         String chartvals = "";
 
+        for (int i = 0; i < chart.Count; i++)
+        {
+            if (i == 0)
+            {
+                if (chart[i].Length >= 3)
+                {
+                    chartvals += "["+chart[i].Substring(0,3)+",";
+                }
+                else
+                {
+                    chartvals += "["+chart[i]+",";
+
+                }
+            }
+
+            if (i == chart.Count-1)
+            {
+                if (chart[i].Length >= 3)
+                {
+                    chartvals += ""+ chart[i].Substring(0,3) + "]";
+                }
+                else
+                {
+                    chartvals += ""+ chart[i] + "]";
+                }
+            }
+            else if(i != 0 && i != chart.Count-1)
+            {
+                if (chart[i].Length >= 3)
+                {
+                    chartvals += chart[i].Substring(0,3) + ",";
+                }
+                else
+                {
+                    chartvals += chart[i] + ",";
+                }
+            }
+        }
+
+        return chartvals;
+    }
+    
+    public String getChartString()
+    {
+        String chartvals = "";
+        
         for (int i = 0; i < chart.Count; i++)
         {
             if (i == 0)
@@ -52,52 +98,6 @@ public class CryptoCurrency
                 chartvals += chart[i] + ",";
             }
         }
-
-        return chartvals;
-    }
-    
-    public String getChartStringPreview()
-    {
-        String chartvals = "";
-        if (chart.Count >= 4)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if (i == 0)
-                {
-                    chartvals += "["+chart[i]+",";
-                }
-
-                if (i == chart.Count-1)
-                {
-                    chartvals += ""+ chart[i] + "]";
-                }
-                else if(i != 0 && i != chart.Count-1)
-                {
-                    chartvals += chart[i] + ",";
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < chart.Count; i++)
-            {
-                if (i == 0)
-                {
-                    chartvals += "["+chart[i]+",";
-                }
-
-                if (i == chart.Count-1)
-                {
-                    chartvals += ""+ chart[i] + "]";
-                }
-                else if(i != 0 && i != chart.Count-1)
-                {
-                    chartvals += chart[i] + ",";
-                }
-            }
-        }
-        
 
         return chartvals;
     }
