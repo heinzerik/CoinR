@@ -50,6 +50,35 @@ nav{
   text-align: center;
   width: 100%;
 }
+.subleft{
+  width: 50%;
+  float: left;
+}
+
+.subleftmini{
+  width: 25%;
+  float: left;
+}
+
+.subright{
+  width: 50%;
+  float: right;
+}
+
+.subrightmini{
+  width: 75%;
+  float: right;
+}
+
+.predictionprice{
+  color: #0CAE19;
+}
+
+.rating{
+  margin-left: 5%;
+}
+
+
 .currencyContainer{
   float: left;
   width:30%;
@@ -114,6 +143,29 @@ nav{
   height: 3%;
   max-width: 150px;
 }
+
+.currencylogodetail{
+  position: relative;
+  max-width: 150px;
+  float: right;
+  margin-bottom: 5%;
+  vertical-align: middle;
+}
+
+.buypredictionbtn{
+  background-color: #FFFA21;
+  color: black;
+  border-radius: 20px;
+  border: none;
+  width: 60%;
+  height: 100px;
+}
+.currencynamedetail{
+  float: left;
+  font-size: 44pt;
+  vertical-align: middle;
+}
+
 .currencyrating{
   position: relative;
   margin-top: 2%;

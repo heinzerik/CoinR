@@ -13,25 +13,43 @@
     <title>@Currencydetails._currency</title>
 </head>
 <body>
-<div class="left">
-    <h1>@Currencydetails.getCurrencyName()</h1>
-    <img class="currencylogo" src="@Currencydetails.getCurrencyLogo()"/>
-    <p>RATING</p>
-    <p>@Currencydetails.getCurrencyRating()</p>
-</div>
-<div class="right">
-    <h3>Prediction</h3>
-    <p>PRICE</p>
-    <p>@Currencydetails.getPredictionPrice()</p>
+<div class="detailswrapper">
 
-    <button>BUY PREDICTION</button> 
-</div>
-<div class="chartcontainer">
-    <div class="currencychartdetail">
-        <canvas class="chart"></canvas>
+    <div class="left">
+        <div class="subleft">
+            <span><h1 class="currencynamedetail">@Currencydetails.getCurrencyName()</h1></span>
+            <img class="currencylogodetail" src="@Currencydetails.getCurrencyLogo()"/>
+        </div>
+        <div class="subright">
+            <h3 class="rating">RATING</h3>
+            <p class="rating">@Currencydetails.getCurrencyRating()</p>
+        </div>
+    </div>
+    <div class="right">
+        <div class="subleft">
+            <h3>Prediction</h3>
+            <div class="subleftmini">
+                <p>PRICE</p>
+            </div>
+            <div class="subrightmini">
+                <p class="predictionprice">@Currencydetails.getPredictionPrice()</p>
+            </div>
+        </div>
+        <div class="subright">
+            <button class="buypredictionbtn">
+                BUY PREDICTION
+                <p class="fas fa-chevron-circle-right"></p>
+            </button>
+        </div>
+
+
+    </div>
+    <div class="chartcontainer">
+        <div class="currencychartdetail">
+            <canvas class="chart"></canvas>
+        </div>
     </div>
 </div>
-
 
 </body>
 <script type="text/javascript">  
@@ -40,13 +58,13 @@
             
  
                 var ctx = document.getElementsByClassName(chartName)[0]; 
-                let nameslist = @Html.Raw(Home.getCurrenciesNames());
+                let currencyname = @Html.Raw(Currencydetails.getCurrencyName());
                     let array = @Html.Raw(Currencydetails.getCurrencyChart());
                     console.log(array);
                                 var data = {  
                                         labels: @Html.Raw(Home.generateLabels(Currencydetails.getCurrencyChartCount())),  
                                         datasets: [{  
-                                            label: nameslist[1]+"chart",
+                                            label: currencyname +"chart",
                                             backgroundColor: [  
                                                 "rgb(225,225,5,0.5)",  
                                             ],  
