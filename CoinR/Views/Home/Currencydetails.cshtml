@@ -15,14 +15,16 @@
 <body>
 <div class="left">
     <h1>@Currencydetails.getCurrencyName()</h1>
-    <img src="@Currencydetails.getCurrencyLogo()"/>
+    <img class="currencylogo" src="@Currencydetails.getCurrencyLogo()"/>
     <p>RATING</p>
     <p>@Currencydetails.getCurrencyRating()</p>
 </div>
 <div class="right">
     <h3>Prediction</h3>
     <p>PRICE</p>
-    <button value="BUY PREDICTION"/>
+    <p>@Currencydetails.getPredictionPrice()</p>
+
+    <button>BUY PREDICTION</button> 
 </div>
 <div class="chartcontainer">
     <div class="currencychartdetail">
