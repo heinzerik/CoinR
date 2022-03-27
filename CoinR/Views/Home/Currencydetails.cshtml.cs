@@ -16,7 +16,7 @@ public class Currencydetails : PageModel
     }
 
 
-    public static String getCurrencName()
+    public static String getCurrencyName()
     {
        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault();
     }

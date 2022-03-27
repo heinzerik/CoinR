@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="left">
-    <h1>@Currencydetails.getCurrencName()</h1>
+    <h1>@Currencydetails.getCurrencyName()</h1>
     <img src="@Currencydetails.getCurrencyLogo()"/>
     <p>RATING</p>
     <p>@Currencydetails.getCurrencyRating()</p>
@@ -39,8 +39,8 @@
  
                 var ctx = document.getElementsByClassName(chartName); 
                 let nameslist = @Html.Raw(Home.getCurrenciesNames());
-                for (let i = 0; i < ctx.length;i++){
                     let array = @Html.Raw(Home.getCurrenciesStringList());
+                    console.log(array);
                                 var data = {  
                                         labels: @Html.Raw("[\"1\",\"2\",\"3\",\"4\"]"),  
                                         datasets: [{  
@@ -53,7 +53,7 @@
                                                 "rgb(225,225,5,0.5)"    
                                             ],  
                                             borderWidth: 1,
-                                            data: array[i],
+                                            data: array[1],
                                                                        
                                         }]  
                                     };  
@@ -82,18 +82,11 @@
                                             }]  
                                         }  
                                     }; 
-                new  Chart(ctx[i].getContext('2d'), {  
+                new  Chart(ctx.getContext('2d'), {  
                                                     options: options,  
                                                     data: data,
                                                     type:'line'  
-                                
                                                 });
-                console.log(data);
-                }
-          
-           
-         
-
             });
             
     </script>
