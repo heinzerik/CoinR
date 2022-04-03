@@ -24,7 +24,7 @@
             <div class="currencyContainer">
                 <h1>@currency.name</h1>
                 <img class="currencylogo" src="@currency.logo.pathToImg" alt="currency logo"/>
-                <p class="currencyrating">@currency.rating</p>
+                <p class="currencyrating ratingvalue">@currency.rating</p>
                 <p class="currencysymbol">@currency.symbol</p>
                 <div class="currencychart">
                     <canvas class="@currency.chartname"></canvas>
@@ -102,6 +102,21 @@
          
 
             });
+              $(function(){
+                            
+                        let ratingvalues = document.getElementsByClassName("ratingvalue");
+                        for (i = 0; i < ratingvalues.length;i++){
+                            if(ratingvalues[i].innerText == "buy"){
+                               ratingvalues[i].classList.add("green");    
+                             }
+                             else if (ratingvalues[i].innerText == "sell"){
+                               ratingvalues[i].classList.add("red");    
+                             }
+                             else if (ratingvalues[i].innerText == "outperform"){
+                              ratingvalues[i].classList.add("yellow");    
+                             }
+                           }
+                        });
             
     </script>
     
