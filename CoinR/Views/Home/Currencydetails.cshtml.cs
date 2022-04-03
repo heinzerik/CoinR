@@ -24,7 +24,7 @@ public class Currencydetails : PageModel
 
     public static String getCurrencyName()
     {
-       return "\""+ cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault() + "\"";
+       return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault();
     }
 
     public static string getCurrencyLogo()
@@ -57,7 +57,7 @@ public class Currencydetails : PageModel
 
     public static string getChartName()
     {
-        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.chartname).FirstOrDefault();
+        return "\"" + cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault() + "\"";
 
     }
     
