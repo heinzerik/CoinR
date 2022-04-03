@@ -4,5 +4,5 @@ public enum Rating
 {
     buy,
     sell,
-    hold,
+    outperform,
 }

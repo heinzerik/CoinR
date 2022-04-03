@@ -22,7 +22,7 @@
         </div>
         <div class="subright">
             <h3 class="rating">RATING</h3>
-            <p class="rating">@Currencydetails.getCurrencyRating()</p>
+            <p class="rating" id="ratingvalue">@Currencydetails.getCurrencyRating()</p>
         </div>
     </div>
     <div class="right">
@@ -108,6 +108,19 @@
                                                     type:'line'  
                                                 });
             });
-            
+            $(function(){
+                
+            let ratingvalue = document.getElementById("ratingvalue");
+            console.log(ratingvalue.innerText);
+            if(ratingvalue.innerText == "buy"){
+                ratingvalue.classList.add("green");    
+            }
+            else if (ratingvalue.innerText == "sell"){
+                ratingvalue.classList.add("red");    
+            }
+            else if (ratingvalue.innerText == "outperform"){
+                ratingvalue.classList.add("yellow");    
+            }
+            });
     </script>
 </html>

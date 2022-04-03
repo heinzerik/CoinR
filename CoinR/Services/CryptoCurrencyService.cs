@@ -11,8 +11,8 @@ public static class CryptoCurrencyService
         cryptoCurrencies = new List<CryptoCurrency>
         {
             new CryptoCurrency {chart=new List<string>{"100","20","30","40","50","90"},logo = new Image("img/btc.png"),name = "Bitcoin",rating = Rating.buy, symbol = "BTC",detailslink = "Bitcoin",chartname = "chart"},
-            new CryptoCurrency {chart=new List<string>{"20","20","30","40","30","35"},logo = new Image("img/eth.png"),name = "Ethereum",rating = Rating.buy, symbol = "ETH",detailslink ="Ethereum",chartname = "chart"},
-            new CryptoCurrency {chart=new List<string>{"30","20","40","40","10","20"},logo = new Image("img/ltc.png"),name = "Litecoin",rating = Rating.buy, symbol = "LTC",detailslink = "Litecoin",chartname = "chart"},
+            new CryptoCurrency {chart=new List<string>{"20","20","30","40","30","35"},logo = new Image("img/eth.png"),name = "Ethereum",rating = Rating.sell, symbol = "ETH",detailslink ="Ethereum",chartname = "chart"},
+            new CryptoCurrency {chart=new List<string>{"30","20","40","40","10","20"},logo = new Image("img/ltc.png"),name = "Litecoin",rating = Rating.outperform, symbol = "LTC",detailslink = "Litecoin",chartname = "chart"},
         };
     }
 
