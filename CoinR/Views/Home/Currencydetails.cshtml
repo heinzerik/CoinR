@@ -58,13 +58,13 @@
             
  
                 var ctx = document.getElementsByClassName(chartName)[0]; 
-                let currencyname = @Html.Raw(Currencydetails.getCurrencyName());
+                
                     let array = @Html.Raw(Currencydetails.getCurrencyChart());
                     console.log(array);
                                 var data = {  
                                         labels: @Html.Raw(Home.generateLabels(Currencydetails.getCurrencyChartCount())),  
                                         datasets: [{  
-                                            label: currencyname +"chart",
+                                            label: @Html.Raw(Currencydetails.getCurrencyName()) + "chart",
                                             backgroundColor: [  
                                                 "rgb(225,225,5,0.5)",  
                                             ],  
