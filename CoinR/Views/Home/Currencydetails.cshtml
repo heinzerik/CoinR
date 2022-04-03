@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="subright">
-            <button class="buypredictionbtn">
+            <button class="buypredictionbtn" id="predictionbtn">
                 BUY PREDICTION
                 <p class="fas fa-chevron-circle-right"></p>
             </button>
@@ -52,16 +52,18 @@
 </div>
 
 </body>
-<script type="text/javascript">  
+<script type="text/javascript"> 
+        let array = []; 
+        let chart = null;
+        var data = null;
             $(function () {  
         var chartName = "chart";  
-            
  
                 var ctx = document.getElementsByClassName(chartName)[0]; 
                 
-                    let array = @Html.Raw(Currencydetails.getCurrencyChart());
+                    array = @Html.Raw(Currencydetails.getCurrencyChart());
                     console.log(array);
-                                var data = {  
+                                data = {  
                                         labels: @Html.Raw(Home.generateLabels(Currencydetails.getCurrencyChartCount())),  
                                         datasets: [{  
                                             label: @Html.Raw(Currencydetails.getChartName()) + "chart",
@@ -102,7 +104,7 @@
                                             }]  
                                         }  
                                     }; 
-                new  Chart(ctx.getContext('2d'), {  
+                chart = new  Chart(ctx.getContext('2d'), {  
                                                     options: options,  
                                                     data: data,
                                                     type:'line'  
@@ -111,7 +113,6 @@
             $(function(){
                 
             let ratingvalue = document.getElementById("ratingvalue");
-            console.log(ratingvalue.innerText);
             if(ratingvalue.innerText == "buy"){
                 ratingvalue.classList.add("green");    
             }
@@ -122,5 +123,18 @@
                 ratingvalue.classList.add("yellow");    
             }
             });
+            
+            const buypredictionbtn = document.getElementById("predictionbtn")
+            buypredictionbtn.addEventListener("click", extendChart);
+            
+            function extendChart() {
+                console.log("value added");
+                array.push(50);
+                console.log(array);
+                data.data = data;
+                data.labels = "[10,20]"
+                chart.draw();
+              
+            }
     </script>
 </html>
