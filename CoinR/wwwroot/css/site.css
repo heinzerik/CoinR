@@ -51,12 +51,20 @@ nav{
   width: 100%;
 }
 .subleft{
-  width: 50%;
+  position: relative;
+  width: 100%;
   float: left;
+  display: flex;
+  align-items: center;
 }
 
 .subleftmini{
   width: 25%;
+  float: left;
+}
+
+.subleftnewline{
+  position: relative;
   float: left;
 }
 
@@ -145,11 +153,8 @@ nav{
 }
 
 .currencylogodetail{
-  position: relative;
   max-width: 150px;
-  float: right;
-  margin-bottom: 5%;
-  vertical-align: middle;
+  margin-left: 3%;
 }
 
 .buypredictionbtn{
@@ -163,7 +168,6 @@ nav{
 .currencynamedetail{
   float: left;
   font-size: 44pt;
-  vertical-align: middle;
 }
 
 .currencyrating{

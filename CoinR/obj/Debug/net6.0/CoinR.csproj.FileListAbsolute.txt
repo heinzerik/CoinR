@@ -6,7 +6,6 @@
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR.deps.json
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR.runtimeconfig.json
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR.dll
-/home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/ref/CoinR.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR.pdb
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/Humanizer.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -300,3 +299,4 @@
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/System.Web.WebPages.Razor.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/System.Web.WebPages.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/Microsoft.Web.Infrastructure.dll
+/home/heinzerik/RiderProjects/CoinR/CoinR/obj/Debug/net6.0/refint/CoinR.dll
