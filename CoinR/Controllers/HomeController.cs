@@ -1,10 +1,12 @@
 ﻿using System.Configuration;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Web.Helpers;
 using System.Xml.Schema;
 using CoinR.Data;
 using Microsoft.AspNetCore.Mvc;
 using CoinR.Models;
+using CoinR.Services;
 using CoinR.Views.Home;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -93,6 +95,14 @@ public class HomeController : Controller
     public IActionResult Litecoin()
     {
         return View();
+    }
+
+    public IActionResult BuyPrediction([FromQuery]string currency)
+    {
+        CryptoCurrencyService.GetAll().Where(x => x.name == currency.ToUpper()).FirstOrDefault().chart.Add("10");
+        CryptoCurrencyService.GetAll().Where(x => x.name == currency.ToUpper()).FirstOrDefault().chart.Add("20");
+
+        return View("Currencydetails");
     }
 
     public IActionResult Currencydetails([FromQuery]String currency)

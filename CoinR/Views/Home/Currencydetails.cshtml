@@ -1,9 +1,11 @@
 @page
 @using CoinR.Views.Home
+@using System.Security.Policy
 @model CoinR.Views.Home.Currencydetails
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <!DOCTYPE html>
@@ -39,10 +41,13 @@
             </div>
         </div>
         <div class="subright">
-            <button class="buypredictionbtn" id="predictionbtn">
-                BUY PREDICTION
-                <p class="fas fa-chevron-circle-right"></p>
-            </button>
+            @using (Html.BeginForm("BuyPrediction","Home",new { currency=@Currencydetails._currency}))
+            {
+                <button class="buypredictionbtn" id="predictionbtn" type="submit" value="buy prediction"> 
+                    BUY PREDICTION
+                    <p class="fas fa-chevron-circle-right"></p>
+                </button>   
+            }
         </div>
 
 
@@ -59,6 +64,7 @@
         let array = []; 
         let chart = null;
         var data = null;
+        var labelstring = @Html.Raw(Home.generateLabels(Currencydetails.getCurrencyChartCount()));
             $(function () {  
         var chartName = "chart";  
  
@@ -67,7 +73,7 @@
                     array = @Html.Raw(Currencydetails.getCurrencyChart());
                     console.log(array);
                                 data = {  
-                                        labels: @Html.Raw(Home.generateLabels(Currencydetails.getCurrencyChartCount())),  
+                                        labels: labelstring,  
                                         datasets: [{  
                                             label: @Html.Raw(Currencydetails.getChartName()) + "chart",
                                             backgroundColor: [  
@@ -113,6 +119,8 @@
                                                     type:'line'  
                                                 });
             });
+            console.log("LABELS" + labelstring);
+
             $(function(){
                 
             let ratingvalue = document.getElementById("ratingvalue");
@@ -127,16 +135,5 @@
             }
             });
             
-            const buypredictionbtn = document.getElementById("predictionbtn")
-            buypredictionbtn.addEventListener("click", extendChart);
-            
-            function extendChart() {
-                console.log("value added");
-                array.push(50);
-                console.log(array);
-                data.data = data;
-                chart.draw();
-              
-            }
     </script>
 </html>

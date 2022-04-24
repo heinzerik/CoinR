@@ -11,6 +11,7 @@ public class CryptoCurrency
         this.chart = chart;
         this.detailslink = detailslink;
         this.chartname = chartname;
+        
     }
 
     public CryptoCurrency()
@@ -27,6 +28,17 @@ public class CryptoCurrency
     public String symbol { get; set; }
 
     public List<string> chart { get; set; }
+
+    public string labels
+    {
+        get
+        {
+            return generateLabels();
+        }
+        set
+        {
+        }
+    }
 
     public string detailslink { get; set; }
 
@@ -101,5 +113,27 @@ public class CryptoCurrency
 
         return chartvals;
     }
-    
+
+    public String generateLabels()
+    {
+        string labels = "";
+        for (int i = 0; i < chart.Count; i++)
+        {
+            if (i == 0)
+            {
+                labels += "["+i+",";
+            }
+
+            if (i == chart.Count-1)
+            {
+                labels += ""+ i + "]";
+            }
+            else if(i != 0 && i != chart.Count-1)
+            {
+                labels += i + ",";
+            }
+        }
+
+        return labels;
+    }
 }

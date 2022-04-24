@@ -14,39 +14,48 @@ public class Currencydetails : PageModel
     public static string currentDirectory { get; set; }
 
     public CryptoCurrency cryptoCurrency;
-    
+
     public Currencydetails(string currency)
     {
         currentDirectory = this.GetType().Name;
-        _currency = currency;
+        if (currency == null)
+        {
+            _currency = "Bitcoin";
+        }
+        else
+        {
+            _currency = currency;
+        }
     }
+
 
 
     public static String getCurrencyName()
     {
-       return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault();
+        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault();
     }
 
     public static string getCurrencyLogo()
     {
- 
-       string imgpath = Path.GetRelativePath(currentDirectory,cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.logo.pathToImg).FirstOrDefault());
-       return imgpath;
+        string imgpath = Path.GetRelativePath(currentDirectory,
+            cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.logo.pathToImg).FirstOrDefault());
+        return imgpath;
     }
 
     public static string getCurrencyRating()
     {
-        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.rating).FirstOrDefault().ToString();
+        return cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.rating).FirstOrDefault()
+            .ToString();
     }
 
     public static String getCurrencyChart()
     {
         return (cryptoCurrencies.Where(x => x.detailslink == _currency).FirstOrDefault()).getChartString();
     }
-    
+
     public static int getCurrencyChartCount()
     {
-        return (cryptoCurrencies.Where(x => x.detailslink == _currency).FirstOrDefault()).chartname.Length +1;
+        return (cryptoCurrencies.Where(x => x.detailslink == _currency).FirstOrDefault()).chart.Count;
     }
 
     public static string getPredictionPrice()
@@ -57,10 +66,7 @@ public class Currencydetails : PageModel
 
     public static string getChartName()
     {
-        return "\"" + cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault() + "\"";
-
+        return "\"" + cryptoCurrencies.Where(x => x.detailslink == _currency).Select(x => x.name).FirstOrDefault() +
+               "\"";
     }
-    
-    
-
 }
