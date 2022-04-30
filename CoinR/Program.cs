@@ -4,6 +4,7 @@ using CoinR.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CoinR.Data;
+using Microsoft.AspNetCore.Session;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,15 @@ builder.Services.AddDbContext<UsersDbContext>(Options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddMvc();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(option =>
+{
+    option.IdleTimeout = TimeSpan.FromHours(2);
+    option.Cookie.HttpOnly = true; //prevents client side from access data. The cookie can just be accessed by the server
+    option.Cookie.IsEssential = true;
+
+});
 
 
 var app = builder.Build();
@@ -35,6 +45,7 @@ else
     app.UseHsts();
 }
 
+app.UseSession();
 
 app.UseStaticFiles();
 

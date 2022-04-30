@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CoinR.Data;
 using CoinR.Models;
@@ -129,6 +130,8 @@ namespace CoinR.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(Input.EmailUsername + " logged in.");
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    HttpContext.Session.SetString("UserId",userId);
                     return LocalRedirect(returnUrl);
                 }
                 // if (result.RequiresTwoFactor)
