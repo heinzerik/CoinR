@@ -299,3 +299,4 @@
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/System.Web.WebPages.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/Microsoft.Web.Infrastructure.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/obj/Debug/net6.0/refint/CoinR.dll
+/home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/app.db

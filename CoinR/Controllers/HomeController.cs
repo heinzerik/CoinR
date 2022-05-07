@@ -101,9 +101,16 @@ public class HomeController : Controller
     public IActionResult BuyPrediction([FromQuery]string currency)
     {
         string UserId = HttpContext.Session.GetString("UserId");
-        
-        CryptoCurrencyService.GetAll().Where(x => x.name == currency.ToUpper()).FirstOrDefault().chart.Add("10");
-        CryptoCurrencyService.GetAll().Where(x => x.name == currency.ToUpper()).FirstOrDefault().chart.Add("20");
+
+        string fundings = _userManager.getUserFundings(UserId).Result;
+        string predictionprice = "27";
+
+        if (Convert.ToDecimal(fundings) >= Convert.ToDecimal(predictionprice))
+        {
+            CryptoCurrencyService.GetAll().Where(x => x.name == currency.ToUpper()).FirstOrDefault().chart.Add("10");
+            CryptoCurrencyService.GetAll().Where(x => x.name == currency.ToUpper()).FirstOrDefault().chart.Add("20");
+            return View("Currencydetails");
+        }
 
         return View("Currencydetails");
     }

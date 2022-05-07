@@ -11,6 +11,11 @@ public class ApplicationDbContext : IdentityDbContext
     {
         
     }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("DataSource=app.db;Cache=Shared");
+    }
 }
 
 public class Fundings
