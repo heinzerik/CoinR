@@ -1,5 +1,4 @@
 using System.Configuration;
-using CoinR.Contexts;
 using CoinR.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +13,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     // options.UseSqlServer(connectionString));builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddDbContext<UsersDbContext>(Options =>
-    Options.UseSqlite("name:ConnectionStrings:DefaultConnection"));
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();

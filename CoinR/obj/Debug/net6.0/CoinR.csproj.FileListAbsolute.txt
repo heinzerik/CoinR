@@ -1,7 +1,6 @@
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/appsettings.Development.json
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/appsettings.json
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR.staticwebassets.runtime.json
-/home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/app.db
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR.deps.json
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/CoinR.runtimeconfig.json

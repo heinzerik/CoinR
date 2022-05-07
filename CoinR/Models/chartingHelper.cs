@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
-using CoinR.Contexts;
+using CoinR.Data;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 

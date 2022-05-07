@@ -1,6 +1,5 @@
 using System.Collections.Immutable;
 using System.Configuration;
-using CoinR.Contexts;
 using CoinR.Controllers;
 using CoinR.Data;
 using Microsoft.AspNetCore.Identity;
@@ -20,13 +19,18 @@ public class _userManager
     public static async Task<string> QueryData(String email)
     {
 
-        using (var context = new UsersDbContext(new DbContextOptions<UsersDbContext>()))
+        using (var context = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>()))
         {
             return context.Users.Where(x => x.Email == email).Select(x => x.UserName).FirstOrDefaultAsync().Result;
         }
+    }
 
-
-
+    public static async Task<string> getUserFundings(string userId)
+    {
+        using (var context = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>()))
+        {
+            return context.fundings.Where(x => x.userId.Equals(userId)).Select(x => x.fundings).FirstOrDefault().ToString();
+        }
     }
 
     private static DbContextOptions getDbCConstr()
