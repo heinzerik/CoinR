@@ -16,6 +16,13 @@ public class ApplicationDbContext : IdentityDbContext
     {
         optionsBuilder.UseSqlite("DataSource=app.db;Cache=Shared");
     }
+    
+    public string getConnectionString()
+    {
+        var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+        IConfiguration configuration = builder.Build();
+        return configuration.GetValue<String>("ConnectionStrings:DefaultConnection:value");
+    }
 }
 
 public class Fundings

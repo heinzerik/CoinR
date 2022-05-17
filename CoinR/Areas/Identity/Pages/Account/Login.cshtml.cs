@@ -130,7 +130,7 @@ namespace CoinR.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(Input.EmailUsername + " logged in.");
-                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var userId = _userManager.getPwHash(Input.EmailUsername).Result;
                     HttpContext.Session.SetString("UserId",userId);
                     return LocalRedirect(returnUrl);
                 }

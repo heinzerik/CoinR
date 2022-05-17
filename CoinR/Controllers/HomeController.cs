@@ -10,6 +10,7 @@ using CoinR.Services;
 using CoinR.Views.Home;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
@@ -98,7 +99,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult BuyPrediction([FromQuery]string currency)
+    public async Task<IActionResult> BuyPrediction([FromQuery]string currency)
     {
         string UserId = HttpContext.Session.GetString("UserId");
 
@@ -112,18 +113,29 @@ public class HomeController : Controller
             return View("Currencydetails");
         }
 
-        return View("Currencydetails");
+        return View("InsufficientFundings");
     }
 
     public IActionResult Currencydetails([FromQuery]String currency)
     {
-        
-        var viewmodel = new Currencydetails(currency);
-        return View(viewmodel);
+        string userId = HttpContext.Session.GetString("UserId");
+        if (!String.IsNullOrEmpty(userId))
+        {
+            var viewmodel = new Currencydetails(currency);
+            return View(viewmodel);
+        }
+        //Redirect to Login Page here
+        // return RedirectToRoute("/Account/Login");
+
     }
     public IActionResult Error()
     {
         return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+    }
+
+    public IActionResult InsufficientFundings()
+    {
+        return View("InsufficientFundings");
     }
 
 }

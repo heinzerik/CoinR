@@ -32,6 +32,14 @@ public class _userManager
             return context.fundings.Where(x => x.userId.Equals(userId)).Select(x => x.fundings).FirstOrDefault().ToString();
         }
     }
+    
+    public static async Task<string> getPwHash(string userName)
+    {
+        using (var context = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>()))
+        {
+            return context.Users.Where(x => x.UserName.Equals(userName)).Select(x => x.PasswordHash).FirstOrDefault().ToString();
+        }
+    }
 
     private static DbContextOptions getDbCConstr()
     {

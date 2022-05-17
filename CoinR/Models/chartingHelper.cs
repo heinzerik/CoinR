@@ -10,7 +10,7 @@ public class chartingHelper
 {
     public static async Task<List<String>> getCurrencyChart(string tablename)
     {
-        var context = new UsersDbContext(new DbContextOptions<UsersDbContext>());
+        var context = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>());
         SqliteConnection con = new SqliteConnection(context.getConnectionString());
         List<String> chartvals = new List<string>();
         using (SqliteCommand cmd = new SqliteCommand("select value from " + tablename + "limit 25;", con))
