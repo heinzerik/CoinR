@@ -124,8 +124,8 @@ public class HomeController : Controller
             var viewmodel = new Currencydetails(currency);
             return View(viewmodel);
         }
-        //Redirect to Login Page here
-        // return RedirectToRoute("/Account/Login");
+
+        return LocalRedirect("/Identity/Account/Login");
 
     }
     public IActionResult Error()
