@@ -5,6 +5,8 @@ html {
   padding: 0;
 }
 
+
+
 .headline{
   margin-top: 1%;
   margin-bottom: 1%;
@@ -16,6 +18,16 @@ html {
   justify-content: center;
   margin-bottom: 5%;
 }
+
+.nav-link{
+  color: black !important;
+}
+
+.nav-link.active{
+  color: white !important;
+  background-color: #939393 !important;
+}
+
 
 a{
   color: #e1e105;
@@ -107,6 +119,14 @@ nav{
   display: inline-block;
   background-color: #939393;
   border-radius: 10px 10px 10px 10px;
+}
+
+.accountContainer{
+  padding: 5% 2.5% 1% 2.5%;
+  margin-right: 2.5%;
+  background-color: #939393;
+  border-radius: 10px 10px 10px 10px;
+
 }
 
 .login-wrapper{
@@ -209,6 +229,21 @@ nav{
   transform: rotate(45deg);
   font-size: 45px;
   margin-right: 2%;
+  background: none;
+  border: none;
+  z-index: -1;
+}
+.btn-primary{
+  background-color: #b9b904; !important;
+  border: none;
+  color: black;
+}
+
+.detailslinkaccount{
+  float: right;
+  color: #FFFA21;
+  transform: rotate(45deg);
+  font-size: 45px;
   background: none;
   border: none;
   z-index: -1;
