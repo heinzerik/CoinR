@@ -128,6 +128,32 @@ nav{
   border-radius: 10px 10px 10px 10px;
 
 }
+
+.accountdetailsContainer{
+  float: left;
+  width: 97%;
+  height: 500px;
+  margin: 1%;
+  background-color: #939393;
+  display: flex;
+}
+
+
+.accountdetailsContainerNarrow{
+  float: left;
+  width: 97%;
+  height: 250px;
+  margin: 1%;
+  background-color: #939393;
+  display: flex;
+}
+.AccountdescriptionElements{
+  margin-left: 1%;
+}
+.fullwidth{
+  width: 100%;
+}
+
 .greeting{
   font-size: 55pt !important;
   text-decoration: none;

@@ -4,14 +4,31 @@
 @{
     ViewData["Title"] = "Account";
 }
-<h1 class="greeting">Hi</h1><h1 class="yellow greeting">@User.FindFirst(ClaimTypes.Name).Value</h1><h1 class="greeting">!</h1>
-<div class="currencyWrapper">
-    <div class="currencyContainer">
 
-    </div>
-    <div class="currencyContainer">
-
-    </div>
+<div class="fullwidth">
+    <h1 class="greeting">Hi</h1>
+    <h1 class="yellow greeting">@User.FindFirst(ClaimTypes.Name).Value</h1>
+    <h1 class="greeting">!</h1>
 </div>
 
 
+<div class="left">
+    <h1 class="AccountdescriptionElements">Your Watchlist</h1>
+    <div class="accountdetailsContainer">
+    </div>
+    <h1 class="AccountdescriptionElements">Add to Watchlist</h1>
+    <div class="accountdetailsContainerNarrow">
+    </div>
+</div>
+<div class="right">
+    <h1 class="AccountdescriptionElements">Your Current Balance</h1>
+    <div class="accountdetailsContainerNarrow">
+        <h2>CoinR Account</h2>
+        <h2>2523,13€</h2>
+    </div>
+
+    <h1 class="AccountdescriptionElements">Deposit Money</h1>
+    <div class="accountdetailsContainer">
+
+    </div>
+</div>
