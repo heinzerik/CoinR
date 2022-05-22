@@ -128,6 +128,14 @@ nav{
   border-radius: 10px 10px 10px 10px;
 
 }
+.greeting{
+  font-size: 55pt !important;
+  text-decoration: none;
+  display: inline;
+}
+.greeting:hover{
+  text-decoration: none !important;
+}
 
 .login-wrapper{
   background-color: #939393;
