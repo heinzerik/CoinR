@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Web.Helpers;
 using System.Xml.Schema;
+using CoinR.Areas.Identity.Pages.Account.Manage;
 using CoinR.Data;
 using Microsoft.AspNetCore.Mvc;
 using CoinR.Models;
@@ -11,6 +12,7 @@ using CoinR.Views.Home;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
@@ -114,6 +116,12 @@ public class HomeController : Controller
         }
 
         return View("InsufficientFundings");
+    }
+    
+    public IActionResult Account([FromQuery]string currency)
+    {
+        Account.watchlist.Add(new SelectListItem(currency,currency.ToUpper(),false));
+        return View(Areas.Identity.Pages.Account.Manage.Account);
     }
 
     public IActionResult Currencydetails([FromQuery]String currency)

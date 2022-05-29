@@ -1,5 +1,6 @@
 @page
 @using System.Security.Claims
+@using CoinR.Services
 @model IndexModel
 @{
     ViewData["Title"] = "Account";
@@ -24,7 +25,7 @@
     <div class="left">
         <h1 class="AccountdescriptionElements">YOUR WATCHLIST</h1>
         <div class="accountdetailsContainer">
-            <table>
+            <table class="watchlist">
                 <thead>
                 <td class="col-5"></td>
                 <td class="col-4">Price</td>
@@ -32,29 +33,36 @@
                 <td class="col-1"></td>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>#1 Bitcoin</td>
-                    <td>49560,24€</td>
-                    <td>buy</td>
-                    <td class="fas fa-times-circle"></td>
-                </tr>
-                <tr>
-                    <td>#2 Litecoin</td>
-                    <td>24,90€</td>
-                    <td>outperform</td>
-                    <td class="fas fa-times-circle"></td>
-                </tr>
-                <tr>
-                    <td>#3 Ethereum</td>
-                    <td>429,60€</td>
-                    <td>sell</td>
-                    <td class="fas fa-times-circle"></td>
-                </tr>
+                @{
+                    int i = 1;
+                    @foreach (var currency in Account.watchlist)
+                    {
+                        <tr>
+                            <td>#@i @currency.Text</td>
+                            <td>@CryptoCurrencyService.getPriceByName(@currency.Value) @CryptoCurrencyService.getCurrencySymbol()</td>
+                            <td class="ratingvalue">@CryptoCurrencyService.getByName(@currency.Value).rating</td>
+                            <td class="fas fa-times-circle"></td>
+                        </tr>
+                        i++;
+                    } 
+                }
+                
                 </tbody>
             </table>
         </div>
         <h1 class="AccountdescriptionElements">ADD TO WATCHLIST</h1>
         <div class="accountdetailsContainerNarrow">
+
+            <asp:dropdownlist>
+                <select asp-for="Currency" asp-items="Account.currencies"></select>
+            </asp:dropdownlist>
+            @using (Html.BeginForm("AddToWatchList","Home",new { currency=@Account.getSelectedCurrency()}))
+                        {
+
+                            <button class="watchlistbtn" type="submit" value="add to watchlist"> 
+                                ADD
+                            </button>   
+                        }
         </div>
     </div>
 
@@ -66,3 +74,21 @@
         </div>
     </div>
 </div>
+
+<script>
+$(function(){
+                            
+                        let ratingvalues = document.getElementsByClassName("ratingvalue");
+                        for (i = 0; i < ratingvalues.length;i++){
+                            if(ratingvalues[i].innerText == "buy"){
+                               ratingvalues[i].classList.add("green");    
+                             }
+                             else if (ratingvalues[i].innerText == "sell"){
+                               ratingvalues[i].classList.add("red");    
+                             }
+                             else if (ratingvalues[i].innerText == "outperform"){
+                              ratingvalues[i].classList.add("yellow");    
+                             }
+                           }
+                        });
+</script>

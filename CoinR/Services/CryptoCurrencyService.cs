@@ -8,6 +8,7 @@ public static class CryptoCurrencyService
 {
     static List<CryptoCurrency> cryptoCurrencies { get; }
     static int nextId = 3;
+    private static string currencysymbol = "€";
     static CryptoCurrencyService()
     {
         cryptoCurrencies = new List<CryptoCurrency>
@@ -20,6 +21,20 @@ public static class CryptoCurrencyService
 
     public static List<CryptoCurrency> GetAll() => cryptoCurrencies;
 
-    public static CryptoCurrency? Get(int id) => cryptoCurrencies.FirstOrDefault(p => p.symbol == p.symbol);
+    public static CryptoCurrency? Get(string symbol) => cryptoCurrencies.FirstOrDefault(p => p.symbol == symbol);
+    
+    public static string getPriceByName(String name) => cryptoCurrencies.Where(x => x.name == name).Select(x => x.chart.Last()).FirstOrDefault("");
 
+    public static CryptoCurrency? getByName(String name) => cryptoCurrencies.FirstOrDefault(p => p.name == name);
+
+
+    public static void setCurrencySymbol(String symbol)
+    {
+        currencysymbol = symbol;
+    }
+
+    public static string getCurrencySymbol()
+    {
+        return currencysymbol;
+    }
    }
