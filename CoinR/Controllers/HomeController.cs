@@ -118,12 +118,41 @@ public class HomeController : Controller
         return View("InsufficientFundings");
     }
     
-    public IActionResult Account([FromQuery]string currency)
+    [HttpPost]
+    public IActionResult AddToWatchList(String currencyselect)
     {
-        Account.watchlist.Add(new SelectListItem(currency,currency.ToUpper(),false));
-        return View(Areas.Identity.Pages.Account.Manage.Account);
+        
+        if (!WatchListContainsCurrency(currencyselect.ToUpper()))
+        {
+            Account.watchlist.Add(new SelectListItem(currencyselect,currencyselect.ToUpper(),false));    
+        }
+        else
+        {
+            ViewBag.Message = "Watchlist already contains Currency";
+        }
+        
+        return RedirectToPage("/Account/Manage/Account", new { area = "Identity" });
     }
 
+    public string getSelectedCurrency()
+    {
+        return Request.Form["currencyselect"].ToString();
+    }
+    
+    
+
+    private bool WatchListContainsCurrency(String currency)
+    {
+        List<String> currencies = Account.watchlist.Where(x => x.Value.Equals(currency)).Select(x => x.Value).ToList();
+        if(currencies.Any())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+ 
     public IActionResult Currencydetails([FromQuery]String currency)
     {
         string userId = HttpContext.Session.GetString("UserId");

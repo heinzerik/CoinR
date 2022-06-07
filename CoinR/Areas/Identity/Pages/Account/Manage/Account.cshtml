@@ -1,6 +1,10 @@
 @page
 @using System.Security.Claims
+@using CoinR.Controllers
 @using CoinR.Services
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.CodeAnalysis
+@using Microsoft.JSInterop
 @model IndexModel
 @{
     ViewData["Title"] = "Account";
@@ -25,6 +29,7 @@
     <div class="left">
         <h1 class="AccountdescriptionElements">YOUR WATCHLIST</h1>
         <div class="accountdetailsContainer">
+            <label id="watchlistErrorLabel"></label>
             <table class="watchlist">
                 <thead>
                 <td class="col-5"></td>
@@ -44,26 +49,23 @@
                             <td class="fas fa-times-circle"></td>
                         </tr>
                         i++;
-                    } 
+                    }
                 }
-                
+
                 </tbody>
             </table>
         </div>
         <h1 class="AccountdescriptionElements">ADD TO WATCHLIST</h1>
         <div class="accountdetailsContainerNarrow">
+          
+                <form asp-action="AddToWatchList" asp-controller="Home" method="post" enctype="multipart/form-data">
+                    <asp:dropdownlist>
+                        <select id="currencyselect" asp-for="Currency" asp-items="Account.currencies" name="currencyselect" onchange="getSelectedCurrency()"></select>
+                    </asp:dropdownlist>
+                    <button class="watchlistbtn" type="submit" value="add to watchlist"></button>
 
-            <asp:dropdownlist>
-                <select asp-for="Currency" asp-items="Account.currencies"></select>
-            </asp:dropdownlist>
-            @using (Html.BeginForm("AddToWatchList","Home",new { currency=@Account.getSelectedCurrency()}))
-                        {
-
-                            <button class="watchlistbtn" type="submit" value="add to watchlist"> 
-                                ADD
-                            </button>   
-                        }
-        </div>
+                </form>
+                </div>
     </div>
 
 
@@ -74,7 +76,14 @@
         </div>
     </div>
 </div>
-
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+}
 <script>
 $(function(){
                             
@@ -91,4 +100,13 @@ $(function(){
                              }
                            }
                         });
+
+
+function sendSelectedCurrency()
+    {
+      let a  = $( "#currencyselect option:selected" ).text();
+      console.log(a);
+      
+    }
+
 </script>

@@ -190,8 +190,14 @@ select {
     height: 50px;
     width: 20%;
     border-radius: 0px 0px 10px 0px !important;
+    border: none;
     align-items: center;
     justify-content: center;
+    background-color: #FFFA21;
+}
+
+.watchlistErrorLabel{
+  color: red;  
 }
 
 .greeting {
