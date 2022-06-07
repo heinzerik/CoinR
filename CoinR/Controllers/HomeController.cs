@@ -119,12 +119,12 @@ public class HomeController : Controller
     }
     
     [HttpPost]
-    public IActionResult AddToWatchList(String currencyselect)
+    public IActionResult AddToWatchList(String currency)
     {
         
-        if (!WatchListContainsCurrency(currencyselect.ToUpper()))
+        if (!WatchListContainsCurrency(currency.ToUpper()))
         {
-            Account.watchlist.Add(new SelectListItem(currencyselect,currencyselect.ToUpper(),false));    
+            Account.watchlist.Add(new SelectListItem(currency,currency.ToUpper(),false));    
         }
         else
         {

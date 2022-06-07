@@ -180,7 +180,7 @@ td {
 select {
     width: 60%;
     height: 50px;
-    margin: 10% 5%;
+    margin: 10% 2.5% 10% 5%;
     text-align-last: center;
     border-radius: 5px;
 }
@@ -194,6 +194,8 @@ select {
     align-items: center;
     justify-content: center;
     background-color: #FFFA21;
+    margin: 10% 2.5%;
+
 }
 
 .watchlistErrorLabel{

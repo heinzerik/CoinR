@@ -60,9 +60,9 @@
           
                 <form asp-action="AddToWatchList" asp-controller="Home" method="post" enctype="multipart/form-data">
                     <asp:dropdownlist>
-                        <select id="currencyselect" asp-for="Currency" asp-items="Account.currencies" name="currencyselect" onchange="getSelectedCurrency()"></select>
+                        <select id="currencyselect" asp-for="Currency" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
                     </asp:dropdownlist>
-                    <button class="watchlistbtn" type="submit" value="add to watchlist"></button>
+                    <button class="watchlistbtn" type="submit" value="add to watchlist">ADD</button>
 
                 </form>
                 </div>
