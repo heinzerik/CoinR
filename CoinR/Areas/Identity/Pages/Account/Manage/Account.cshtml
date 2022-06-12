@@ -40,16 +40,27 @@
                 <tbody>
                 @{
                     int i = 1;
+
+
                     @foreach (var currency in Account.watchlist)
                     {
-                        <tr>
-                            <td>#@i @currency.Text</td>
-                            <td>@CryptoCurrencyService.getPriceByName(@currency.Value) @CryptoCurrencyService.getCurrencySymbol()</td>
-                            <td class="ratingvalue">@CryptoCurrencyService.getByName(@currency.Value).rating</td>
-                            <td class="fas fa-times-circle"></td>
-                        </tr>
+                        <form asp-action="RemoveFromWatchlist" asp-controller="Home" method="post" enctype="multipart/form-data">
+                            <tr>
+                                <td>#@i @currency.Text</td>
+                                <td>@CryptoCurrencyService.getPriceByName(@currency.Value) @CryptoCurrencyService.getCurrencySymbol()</td>
+                                <td class="ratingvalue">@CryptoCurrencyService.getByName(@currency.Value).rating</td>
+                                <td>
+                                    <input type="text" name="curr" style="display: none" value="@currency.Text"/>
+                                    <button class="fas fa-times-circle removebtn" type="submit" value="remove from watchlist"/>
+                                </td>
+
+                            </tr>
+                        </form>
+
                         i++;
                     }
+
+
                 }
 
                 </tbody>
@@ -57,15 +68,15 @@
         </div>
         <h1 class="AccountdescriptionElements">ADD TO WATCHLIST</h1>
         <div class="accountdetailsContainerNarrow">
-          
-                <form asp-action="AddToWatchList" asp-controller="Home" method="post" enctype="multipart/form-data">
-                    <asp:dropdownlist>
-                        <select id="currencyselect" asp-for="Currency" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
-                    </asp:dropdownlist>
-                    <button class="watchlistbtn" type="submit" value="add to watchlist">ADD</button>
 
-                </form>
-                </div>
+            <form asp-action="AddToWatchList" asp-controller="Home" method="post" enctype="multipart/form-data">
+                <asp:dropdownlist>
+                    <select id="currencyselect" asp-for="Currency" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
+                </asp:dropdownlist>
+                <button class="watchlistbtn" type="submit" value="add to watchlist">ADD</button>
+
+            </form>
+        </div>
     </div>
 
 

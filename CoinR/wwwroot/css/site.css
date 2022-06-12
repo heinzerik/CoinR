@@ -185,6 +185,12 @@ select {
     border-radius: 5px;
 }
 
+.removebtn {
+    background: none;
+    color: inherit;
+    border: none;
+}
+
 .watchlistbtn {
     display: inline-flex;
     height: 50px;
@@ -198,8 +204,8 @@ select {
 
 }
 
-.watchlistErrorLabel{
-  color: red;  
+.watchlistErrorLabel {
+    color: red;
 }
 
 .greeting {

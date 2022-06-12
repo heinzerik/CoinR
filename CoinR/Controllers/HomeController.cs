@@ -23,10 +23,8 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly ApplicationDbContext _dbContext;
-    
 
-    
-    
+
     public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
     {
         _logger = logger;
@@ -101,7 +99,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public async Task<IActionResult> BuyPrediction([FromQuery]string currency)
+    public async Task<IActionResult> BuyPrediction([FromQuery] string currency)
     {
         string UserId = HttpContext.Session.GetString("UserId");
 
@@ -117,34 +115,48 @@ public class HomeController : Controller
 
         return View("InsufficientFundings");
     }
-    
+
     [HttpPost]
     public IActionResult AddToWatchList(String currency)
     {
-        
         if (!WatchListContainsCurrency(currency.ToUpper()))
         {
-            Account.watchlist.Add(new SelectListItem(currency,currency.ToUpper(),false));    
+            Account.watchlist.Add(new SelectListItem(currency, currency.ToUpper(), false));
         }
         else
         {
             ViewBag.Message = "Watchlist already contains Currency";
         }
-        
-        return RedirectToPage("/Account/Manage/Account", new { area = "Identity" });
+
+        return RedirectToPage("/Account/Manage/Account", new {area = "Identity"});
+    }
+
+    [HttpPost]
+    public IActionResult RemoveFromWatchList(String curr)
+    {
+        if (WatchListContainsCurrency(curr.ToUpper()))
+        {
+            SelectListItem item = Account.watchlist.Where(x => x.Value.Equals(curr.ToUpper())).Select(x => x).FirstOrDefault();
+            Account.watchlist.Remove(item);
+        }
+        else
+        {
+            ViewBag.Message = "Watchlist does not contain Currency";
+        }
+
+        return RedirectToPage("/Account/Manage/Account", new {area = "Identity"});
     }
 
     public string getSelectedCurrency()
     {
         return Request.Form["currencyselect"].ToString();
     }
-    
-    
+
 
     private bool WatchListContainsCurrency(String currency)
     {
         List<String> currencies = Account.watchlist.Where(x => x.Value.Equals(currency)).Select(x => x.Value).ToList();
-        if(currencies.Any())
+        if (currencies.Any())
         {
             return true;
         }
@@ -152,8 +164,8 @@ public class HomeController : Controller
         return false;
     }
 
- 
-    public IActionResult Currencydetails([FromQuery]String currency)
+
+    public IActionResult Currencydetails([FromQuery] String currency)
     {
         string userId = HttpContext.Session.GetString("UserId");
         if (!String.IsNullOrEmpty(userId))
@@ -163,8 +175,8 @@ public class HomeController : Controller
         }
 
         return LocalRedirect("/Identity/Account/Login");
-
     }
+
     public IActionResult Error()
     {
         return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
@@ -174,5 +186,4 @@ public class HomeController : Controller
     {
         return View("InsufficientFundings");
     }
-
 }
