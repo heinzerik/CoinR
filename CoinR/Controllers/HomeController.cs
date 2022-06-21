@@ -11,8 +11,10 @@ using CoinR.Services;
 using CoinR.Views.Home;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Internal;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
@@ -116,32 +118,30 @@ public class HomeController : Controller
         return View("InsufficientFundings");
     }
 
-    [HttpPost]
     public IActionResult AddToWatchList(String currency)
     {
         if (!WatchListContainsCurrency(currency.ToUpper()))
         {
             Account.watchlist.Add(new SelectListItem(currency, currency.ToUpper(), false));
-        }
-        else
-        {
-            ViewBag.Message = "Watchlist already contains Currency";
-        }
 
+        }
         return RedirectToPage("/Account/Manage/Account", new {area = "Identity"});
+
+
     }
 
-    [HttpPost]
     public IActionResult RemoveFromWatchList(String curr)
     {
         if (WatchListContainsCurrency(curr.ToUpper()))
         {
-            SelectListItem item = Account.watchlist.Where(x => x.Value.Equals(curr.ToUpper())).Select(x => x).FirstOrDefault();
+            SelectListItem item = Account.watchlist.Where(x => x.Value.Equals(curr.ToUpper())).Select(x => x)
+                .FirstOrDefault();
             Account.watchlist.Remove(item);
         }
         else
         {
-            ViewBag.Message = "Watchlist does not contain Currency";
+            ModelState.AddModelError("Error", "Watchlist does not contain currency " + curr);
+            return View("Index");
         }
 
         return RedirectToPage("/Account/Manage/Account", new {area = "Identity"});

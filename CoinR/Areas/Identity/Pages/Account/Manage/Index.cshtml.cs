@@ -16,6 +16,7 @@ namespace CoinR.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        public String returnUrl = "";
 
         public IndexModel(
             UserManager<IdentityUser> userManager,

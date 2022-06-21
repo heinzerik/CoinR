@@ -5,15 +5,13 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.CodeAnalysis
 @using Microsoft.JSInterop
-@model IndexModel
-@{
-    ViewData["Title"] = "Account";
-}
+@model Account
 <div class="fullwidth">
     <div class="left">
         <h1 class="greeting">Hi</h1>
         <h1 class="yellow greeting">@User.FindFirst(ClaimTypes.Name).Value</h1>
         <h1 class="greeting">!</h1>
+
     </div>
 
     <div class="right">
@@ -28,8 +26,13 @@
 <div class="fullwidth">
     <div class="left">
         <h1 class="AccountdescriptionElements">YOUR WATCHLIST</h1>
+
+
         <div class="accountdetailsContainer">
-            <label id="watchlistErrorLabel"></label>
+            @if (ViewData["Error"] != "")
+            {
+                <p class="text-danger errormsg">@ViewData["Error"]</p>
+            }
             <table class="watchlist">
                 <thead>
                 <td class="col-5"></td>
@@ -51,7 +54,7 @@
                                 <td class="ratingvalue">@CryptoCurrencyService.getByName(@currency.Value).rating</td>
                                 <td>
                                     <input type="text" name="curr" style="display: none" value="@currency.Text"/>
-                                    <button class="fas fa-times-circle removebtn" type="submit" value="remove from watchlist"/>
+                                    <button class="fas fa-times-circle removebtn" type="submit" asp-page-handler="Submit" value="Submit"/>
                                 </td>
 
                             </tr>
@@ -73,7 +76,7 @@
                 <asp:dropdownlist>
                     <select id="currencyselect" asp-for="Currency" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
                 </asp:dropdownlist>
-                <button class="watchlistbtn" type="submit" value="add to watchlist">ADD</button>
+                <button class="watchlistbtn" type="submit" asp-page-handler="Submit" value="submit">ADD</button>
 
             </form>
         </div>

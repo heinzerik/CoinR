@@ -141,6 +141,12 @@ nav {
     font-size: 15pt;
 }
 
+.errormsg{
+    margin: 5% 10%;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
 td {
     vertical-align: baseline;
     display: table-cell;
@@ -190,6 +196,8 @@ select {
     color: inherit;
     border: none;
 }
+
+
 
 .watchlistbtn {
     display: inline-flex;
