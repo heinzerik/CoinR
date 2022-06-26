@@ -85,8 +85,50 @@
 
     <div class="right">
         <h1 class="AccountdescriptionElements">DEPOSIT MONEY</h1>
-        <div class="accountdetailsContainer">
-
+        <div class="accountdetailsContainerBig">
+            <form asp-controller="Home" method="post" enctype="multipart/form-data">
+            <table class="table table-borderless depositmoneytable">
+                <tbody>
+                <tr>
+                    <td>CARD NUMBER</td>
+                    <td>CCV</td>
+                </tr>
+                <tr>
+                    <td class="depositmoneytd">
+                        <input type="text" name="cardnumber" size="18" id="cardnumber" minlength="19" maxlength="19" placeholder="1111-2222-3333-4444" class="depositmoneyinput"/>
+                    </td>
+                    <td class="depositmoneytd">
+                        <input type="password" name="ccv" size="1" minlength="3" maxlength="3" placeholder="CCV" class="depositmoneyinput"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="depositmoneytd">CARD HOLDER</td>
+                    <td class="depositmoneytd">EXPIRATION DATE</td>
+                </tr>
+                <tr>
+                    <td class="depositmoneytd">
+                        <input type="text" name="cardholder" placeholder="card holder" class="depositmoneyinput"/>
+                    </td>
+                    <td class="depositmoneytd">
+                        <input type="date" name="expirationdate" placeholder="expiration date" class="depositmoneyinput"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="depositmoneytd">AMOUNT</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="depositmoneytd">
+                        <input type="number" name="amoount" min="1" step="any" class="depositmoneyAmountInput" placeholder="Amount"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="depositmoneytd">
+                        <button class="watchlistbtn" type="submit" asp-page-handler="Cancel" value="cancel">DEPOSIT</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </form>
         </div>
     </div>
 </div>
@@ -122,5 +164,32 @@ function sendSelectedCurrency()
       console.log(a);
       
     }
+    
+    $(document).ready(function(){
+    
+    //For Card Number formatted input
+    var cardNum = document.getElementById('cardnumber');
+    cardNum.onkeyup = function (e) {
+        if (this.value == this.lastValue) return;
+        var caretPosition = this.selectionStart;
+        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+        var parts = [];
+        
+        for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
+            parts.push(sanitizedValue.substring(i, i + 4));
+        }
+        
+        for (var i = caretPosition - 1; i >= 0; i--) {
+            var c = this.value[i];
+            if (c < '0' || c > '9') {
+                caretPosition--;
+            }
+        }
+        caretPosition += Math.floor(caretPosition / 4);
+        
+        this.value = this.lastValue = parts.join(' ');
+        this.selectionStart = this.selectionEnd = caretPosition;
+    }
+    });
 
 </script>

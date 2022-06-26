@@ -65,6 +65,11 @@ public class Account : PageModel
         return Page();
     }
 
+    public async Task<IActionResult> OnPostCancel(String cardnumber,String ccv,String cardholder,String expirationdate,string amount)
+    {
+        return Page();
+    }
+
     public async Task OnGet()
     {
         ViewData["Error"] = "";

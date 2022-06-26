@@ -141,11 +141,42 @@ nav {
     font-size: 15pt;
 }
 
-.errormsg{
+.errormsg {
     margin: 5% 10%;
     font-size: 12pt;
     font-weight: bold;
 }
+
+.depositmoneytable {
+    text-align: center;
+    align-items: center;
+    max-height: 400px !important;
+}
+
+.depositmoneyinput {
+    border-radius: 0px 0px 10px 0px;
+    width: 80%;
+    height: 55px;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.depositmoneyAmountInput{
+    border-radius: 0px 0px 10px 0px;
+    width: 60%;
+    height: 55px;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.depositmoneytd {
+    vertical-align: center;
+    text-align: center;
+}
+
+
 
 td {
     vertical-align: baseline;
@@ -160,6 +191,15 @@ td {
     background-color: #939393;
     border-radius: 0px 0px 10px 0px;
 
+}
+
+.accountdetailsContainerBig {
+    float: left;
+    width: 97%;
+    height: 500px;
+    margin: 1% 1% 3.5% 1%;
+    background-color: #939393;
+    border-radius: 0px 0px 10px 0px;
 }
 
 
@@ -196,7 +236,6 @@ select {
     color: inherit;
     border: none;
 }
-
 
 
 .watchlistbtn {
