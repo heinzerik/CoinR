@@ -300,3 +300,5 @@
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/Microsoft.Web.Infrastructure.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/obj/Debug/net6.0/refint/CoinR.dll
 /home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/app.db
+/home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/Braintree.dll
+/home/heinzerik/RiderProjects/CoinR/CoinR/bin/Debug/net6.0/System.Xml.XPath.XmlDocument.dll

@@ -1,15 +1,27 @@
+using Braintree;
 using CoinR.Controllers;
+using CoinR.Views.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using BraintreeService = CoinR.Services.BraintreeService;
 
 namespace CoinR.Areas.Identity.Pages.Account.Manage;
 
 public class Account : PageModel
 {
     public String account = "";
+
+    public String Id = "";
+    public String Nonce = "Visa";
     public static String? currencyselectValue = "Bitcoin";
+    private readonly BraintreeService braintreeService;
+
+    public Account(BraintreeService braintreeService)
+    {
+        this.braintreeService = braintreeService;
+    }
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -34,6 +46,7 @@ public class Account : PageModel
 
     public async Task<IActionResult> OnPostSubmit(String currency, String curr)
     {
+        
         if (currency != null && curr == null)
         {
             if (WatchListContainsCurrency(currency.ToUpper()))
@@ -44,7 +57,6 @@ public class Account : PageModel
             {
                 Account.watchlist.Add(new SelectListItem(currency, currency.ToUpper(), false));
                 // return RedirectToPage("/Account/Manage/Account", new {area = "Identity"});
-
             }
         }
         else if (currency == null && curr != null)
@@ -59,14 +71,38 @@ public class Account : PageModel
                     .FirstOrDefault();
                 Account.watchlist.Remove(item);
                 // return RedirectToPage("/Account/Manage/Account", new {area = "Identity"});
-
             }
         }
+
         return Page();
     }
 
-    public async Task<IActionResult> OnPostCancel(String cardnumber,String ccv,String cardholder,String expirationdate,string amount)
+    public async Task<IActionResult> OnPostCancel(String cardnumber, String ccv, String cardholder,
+        String expirationdate, string amount)
     {
+        
+
+
+        var request = new TransactionRequest
+        {
+            Amount = Convert.ToDecimal("250"),
+            PaymentMethodNonce = Nonce,
+            Options = new TransactionOptionsRequest
+            {
+                SubmitForSettlement = true
+            }
+        };
+
+        Result<Transaction> result = HomeController.gateway.Transaction.Sale(request);
+
+        if (result.IsSuccess())
+        {
+            return Page();
+        }
+        else
+        {
+            return RedirectToPage("Error");
+        }
         return Page();
     }
 

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Web.Helpers;
 using System.Xml.Schema;
+using Braintree;
 using CoinR.Areas.Identity.Pages.Account.Manage;
 using CoinR.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
+using BraintreeService = CoinR.Services.BraintreeService;
 
 namespace CoinR.Controllers;
 
@@ -25,12 +27,18 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly ApplicationDbContext _dbContext;
+    public static IBraintreeGateway gateway;
+    private string clientToken;
+    
+    
 
+    private readonly BraintreeService braintreeService;
 
-    public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext,BraintreeService braintreeService)
     {
         _logger = logger;
         _dbContext = dbContext;
+        this.braintreeService = braintreeService;
     }
 
     public IActionResult Index()
@@ -49,6 +57,9 @@ public class HomeController : Controller
 
     public IActionResult Home()
     {
+        gateway = braintreeService.createGateway();
+        clientToken = gateway.ClientToken.Generate(); //Genarate a token
+        ViewBag.clientToken = clientToken;
         return View();
     }
 

@@ -3,6 +3,7 @@ using CoinR.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CoinR.Data;
+using CoinR.Services;
 using Microsoft.AspNetCore.Session;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,7 @@ builder.Services.AddSession(option =>
     option.Cookie.IsEssential = true;
 
 });
+builder.Services.AddTransient<BraintreeService>();
 
 
 var app = builder.Build();

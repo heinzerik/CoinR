@@ -86,49 +86,73 @@
     <div class="right">
         <h1 class="AccountdescriptionElements">DEPOSIT MONEY</h1>
         <div class="accountdetailsContainerBig">
-            <form asp-controller="Home" method="post" enctype="multipart/form-data">
-            <table class="table table-borderless depositmoneytable">
-                <tbody>
-                <tr>
-                    <td>CARD NUMBER</td>
-                    <td>CCV</td>
-                </tr>
-                <tr>
-                    <td class="depositmoneytd">
-                        <input type="text" name="cardnumber" size="18" id="cardnumber" minlength="19" maxlength="19" placeholder="1111-2222-3333-4444" class="depositmoneyinput"/>
-                    </td>
-                    <td class="depositmoneytd">
-                        <input type="password" name="ccv" size="1" minlength="3" maxlength="3" placeholder="CCV" class="depositmoneyinput"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="depositmoneytd">CARD HOLDER</td>
-                    <td class="depositmoneytd">EXPIRATION DATE</td>
-                </tr>
-                <tr>
-                    <td class="depositmoneytd">
-                        <input type="text" name="cardholder" placeholder="card holder" class="depositmoneyinput"/>
-                    </td>
-                    <td class="depositmoneytd">
-                        <input type="date" name="expirationdate" placeholder="expiration date" class="depositmoneyinput"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="depositmoneytd">AMOUNT</td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="depositmoneytd">
-                        <input type="number" name="amoount" min="1" step="any" class="depositmoneyAmountInput" placeholder="Amount"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="depositmoneytd">
-                        <button class="watchlistbtn" type="submit" asp-page-handler="Cancel" value="cancel">DEPOSIT</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            </form>
+            @* <form asp-controller="Home" method="post" enctype="multipart/form-data" id="payment-form"> *@
+            @*     @Html.HiddenFor(n => n.Id) *@
+            @*     <table class="table table-borderless depositmoneytable"> *@
+            @*         <tbody> *@
+            @*         <tr> *@
+            @*             <td>CARD NUMBER</td> *@
+            @*             <td>CCV</td> *@
+            @*         </tr> *@
+            @*         <tr> *@
+            @*             <td class="depositmoneytd"> *@
+            @*                 <input type="text" name="cardnumber" size="18" id="cardnumber" minlength="19" maxlength="19" placeholder="1111-2222-3333-4444" class="depositmoneyinput"/> *@
+            @*             </td> *@
+            @*             <td class="depositmoneytd"> *@
+            @*                 <input type="password" name="ccv" size="1" minlength="3" maxlength="3" placeholder="CCV" class="depositmoneyinput"/> *@
+            @*             </td> *@
+            @*         </tr> *@
+            @*         <tr> *@
+            @*             <td class="depositmoneytd">CARD HOLDER</td> *@
+            @*             <td class="depositmoneytd">EXPIRATION DATE</td> *@
+            @*         </tr> *@
+            @*         <tr> *@
+            @*             <td class="depositmoneytd"> *@
+            @*                 <input type="text" name="cardholder" placeholder="card holder" class="depositmoneyinput"/> *@
+            @*             </td> *@
+            @*             <td class="depositmoneytd"> *@
+            @*                 <input type="date" name="expirationdate" placeholder="expiration date" class="depositmoneyinput"/> *@
+            @*             </td> *@
+            @*         </tr> *@
+            @*         <tr> *@
+            @*             <td colspan="2" class="depositmoneytd">AMOUNT</td> *@
+            @*         </tr> *@
+            @*         <tr> *@
+            @*             <td colspan="2" class="depositmoneytd"> *@
+            @*                 <input type="number" name="amoount" min="1" step="any" class="depositmoneyAmountInput" placeholder="Amount"/> *@
+            @*             </td> *@
+            @*             @Html.HiddenFor(n => n.Id) *@
+            @*             <section> *@
+            @*                 <div class="bt-drop-in-wrapper"> *@
+            @*                     <div id="bt-dropin"></div> *@
+            @*                 </div> *@
+            @*             </section> *@
+            @*             @Html.HiddenFor(n => n.Nonce, new {@id = "nonce"}) *@
+            @* *@
+            @*         </tr> *@
+            @*         <tr> *@
+            @*             <td colspan="2" class="depositmoneytd"> *@
+            @*                 <button class="watchlistbtn" type="submit" asp-page-handler="Cancel" value="cancel">DEPOSIT</button> *@
+            @*             </td> *@
+            @*         </tr> *@
+            @*         </tbody> *@
+            @*     </table> *@
+            @* </form> *@
+            
+            
+            <div class="wrapper">
+                <div class="checkout container">
+                    <form id="payment-form" method="post" asp-controller="Home">
+                        <section>
+                            <div class="bt-drop-in-wrapper">
+                                <div id="bt-dropin"></div>
+                            </div>
+                        </section>
+                        <hr />
+                        <button class="btn btn-success" type="submit" asp-page-handler="Cancel"><span>Confirm payment - € 24.99</span></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -140,6 +164,7 @@
             };
         </script>
 }
+<script src="https://js.braintreegateway.com/web/dropin/1.22.0/js/dropin.min.js"></script>
 <script>
 $(function(){
                             
@@ -191,5 +216,26 @@ function sendSelectedCurrency()
         this.selectionStart = this.selectionEnd = caretPosition;
     }
     });
+
+    var client_token = @ViewBag.clientToken;
+    var form = document.querySelector('#payment-form');
+    
+        braintree.dropin.create({
+            authorization: client_token,
+            container: '#bt-dropin'
+        }, function (createErr, instance) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+    
+                instance.requestPaymentMethod(function (err, payload) {
+                    if (err) {
+                        return;
+                    }
+                  
+                    document.querySelector('#nonce').value = payload.nonce;
+                    form.submit();
+                });
+            });
+        });
 
 </script>

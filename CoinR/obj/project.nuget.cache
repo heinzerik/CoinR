@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UBMp7mHOx3Q7MJOJgVEaJHnEbCSJ1hD951eaizvcF2nmt4L1qB3fJaWOk/nWfmcYFio9WrquqEGIbPvko4AMww==",
+  "dgSpecHash": "zTkJ69Fyi6/M2nevmzTaR1qqXbe6Y5SIs9fppuskJprshgqQUki7f5vp6W68iwQGlDrxmojOZbpb8d9mpOTZWA==",
   "success": true,
   "projectFilePath": "/home/heinzerik/RiderProjects/CoinR/CoinR/CoinR.csproj",
   "expectedPackageFiles": [
+    "/home/heinzerik/.nuget/packages/braintree/5.12.0/braintree.5.12.0.nupkg.sha512",
     "/home/heinzerik/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/heinzerik/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
     "/home/heinzerik/.nuget/packages/messagepack.annotations/2.1.152/messagepack.annotations.2.1.152.nupkg.sha512",
@@ -195,7 +196,10 @@
     "/home/heinzerik/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/home/heinzerik/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512",
     "/home/heinzerik/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/home/heinzerik/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
+    "/home/heinzerik/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/home/heinzerik/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
+    "/home/heinzerik/.nuget/packages/system.xml.xpath/4.3.0/system.xml.xpath.4.3.0.nupkg.sha512",
+    "/home/heinzerik/.nuget/packages/system.xml.xpath.xmldocument/4.3.0/system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {
