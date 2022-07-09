@@ -1,5 +1,6 @@
 using Braintree;
 using CoinR.Controllers;
+using CoinR.Models;
 using CoinR.Views.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,24 +12,22 @@ namespace CoinR.Areas.Identity.Pages.Account.Manage;
 
 public class Account : PageModel
 {
-    public String account = "";
 
     public String Id = "";
-    public String Nonce = "Visa";
     public static String? currencyselectValue = "Bitcoin";
-    private readonly BraintreeService braintreeService;
-
-    public Account(BraintreeService braintreeService)
-    {
-        this.braintreeService = braintreeService;
-    }
-
+    public readonly BraintreeService braintreeService;
+    
+    
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
     public string Currency { get; set; }
 
+    public Account(BraintreeService braintreeService)
+    {
+        this.braintreeService = braintreeService; 
+    }
 
     public static readonly List<SelectListItem> watchlist = new List<SelectListItem>()
     {
@@ -43,6 +42,24 @@ public class Account : PageModel
         new SelectListItem("Litecoin", "LITECOIN", false),
     };
 
+
+    public IActionResult Payment()
+    {
+        var gateway = braintreeService.getGaitway();
+        var clientToken = gateway.ClientToken.Generate();
+        ViewData["CLientToken"] = clientToken;
+        var data = new BookPurchaseVM
+        {
+            Id = 2,
+            Description = "Hellow man",
+            Author = "Me",
+            Thumbnail = "This is thumbnail",
+            Title = "This is title",
+            Price = "230",
+            Nonce = ""
+        };
+        return Page();
+    }
 
     public async Task<IActionResult> OnPostSubmit(String currency, String curr)
     {
@@ -80,34 +97,12 @@ public class Account : PageModel
     public async Task<IActionResult> OnPostCancel(String cardnumber, String ccv, String cardholder,
         String expirationdate, string amount)
     {
-        
-
-
-        var request = new TransactionRequest
-        {
-            Amount = Convert.ToDecimal("250"),
-            PaymentMethodNonce = Nonce,
-            Options = new TransactionOptionsRequest
-            {
-                SubmitForSettlement = true
-            }
-        };
-
-        Result<Transaction> result = HomeController.gateway.Transaction.Sale(request);
-
-        if (result.IsSuccess())
-        {
-            return Page();
-        }
-        else
-        {
-            return RedirectToPage("Error");
-        }
         return Page();
     }
 
     public async Task OnGet()
     {
+        ViewData["ClientToken"] = 
         ViewData["Error"] = "";
     }
 

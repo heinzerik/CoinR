@@ -5,7 +5,7 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.CodeAnalysis
 @using Microsoft.JSInterop
-@model Account
+@model CoinR.Models.BookPurchaseVM;
 <div class="fullwidth">
     <div class="left">
         <h1 class="greeting">Hi</h1>
@@ -74,7 +74,7 @@
 
             <form asp-action="AddToWatchList" asp-controller="Home" method="post" enctype="multipart/form-data">
                 <asp:dropdownlist>
-                    <select id="currencyselect" asp-for="Currency" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
+                    <select id="currencyselect" asp-for="Price" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
                 </asp:dropdownlist>
                 <button class="watchlistbtn" type="submit" asp-page-handler="Submit" value="submit">ADD</button>
 
@@ -139,20 +139,7 @@
             @*     </table> *@
             @* </form> *@
             
-            
-            <div class="wrapper">
-                <div class="checkout container">
-                    <form id="payment-form" method="post" asp-controller="Home">
-                        <section>
-                            <div class="bt-drop-in-wrapper">
-                                <div id="bt-dropin"></div>
-                            </div>
-                        </section>
-                        <hr />
-                        <button class="btn btn-success" type="submit" asp-page-handler="Cancel"><span>Confirm payment - € 24.99</span></button>
-                    </form>
-                </div>
-            </div>
+           <iframe src="/Home/Payment"></iframe>
         </div>
     </div>
 </div>
@@ -217,8 +204,8 @@ function sendSelectedCurrency()
     }
     });
 
-    var client_token = @ViewBag.clientToken;
-    var form = document.querySelector('#payment-form');
+    var client_token = ViewData["ClientToken"];
+        var form = document.querySelector('#payment-form');
     
         braintree.dropin.create({
             authorization: client_token,
