@@ -23,7 +23,7 @@ public class BraintreeService
         return braintreeGateway;
     }
 
-    public IBraintreeGateway getGaitway()
+    public IBraintreeGateway getGateway()
     {
         return createGateway();
     }

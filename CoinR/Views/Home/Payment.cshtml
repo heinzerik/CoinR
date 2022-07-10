@@ -1,9 +1,9 @@
-@model CoinR.Models.BookPurchaseVM;
+@model CoinR.Views.Home.Payment;
 
 <div class="wrapper">
     <div class="checkout container">
         <form id="payment-form" method="post" asp-controller="Home" asp-action="Create">
-            @Html.HiddenFor(n => n.Id)
+            @Html.HiddenFor(n => n.Request)
             @* <div class="card"> *@
             @*     <div class="card-body"> *@
             @*         <h5 class="card-title" name="Title" asp-for="@Model.Title">@Model.Title</h5> *@
@@ -18,7 +18,7 @@
                     <div id="bt-dropin"></div>
                 </div>
             </section>
-            @Html.HiddenFor(n => n.Nonce, new { @id = "nonce" })
+            @Html.HiddenFor(n => n.Request, new { @id = "nonce" })
             <hr />
             <button class="btn btn-success" type="submit"><span>Confirm payment - </span></button>
         </form>

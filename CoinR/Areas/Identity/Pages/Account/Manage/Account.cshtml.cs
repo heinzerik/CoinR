@@ -16,6 +16,10 @@ public class Account : PageModel
     public String Id = "";
     public static String? currencyselectValue = "Bitcoin";
     public readonly BraintreeService braintreeService;
+    private IBraintreeGateway gateway;
+    private String clientToken = "";
+    public string Nonce = "";
+    public static string nonce = "";
     
     
     /// <summary>
@@ -43,23 +47,6 @@ public class Account : PageModel
     };
 
 
-    public IActionResult Payment()
-    {
-        var gateway = braintreeService.getGaitway();
-        var clientToken = gateway.ClientToken.Generate();
-        ViewData["CLientToken"] = clientToken;
-        var data = new BookPurchaseVM
-        {
-            Id = 2,
-            Description = "Hellow man",
-            Author = "Me",
-            Thumbnail = "This is thumbnail",
-            Title = "This is title",
-            Price = "230",
-            Nonce = ""
-        };
-        return Page();
-    }
 
     public async Task<IActionResult> OnPostSubmit(String currency, String curr)
     {
@@ -94,15 +81,36 @@ public class Account : PageModel
         return Page();
     }
 
-    public async Task<IActionResult> OnPostCancel(String cardnumber, String ccv, String cardholder,
-        String expirationdate, string amount)
+    public async Task<IActionResult> OnPost(String paymentmethod)
     {
-        return Page();
+        var gateway = braintreeService.getGateway();
+        var request = new TransactionRequest
+        {
+            Amount = Convert.ToDecimal("250"),
+            PaymentMethodNonce = nonce,
+            Options = new TransactionOptionsRequest
+            {
+                SubmitForSettlement = true
+            }
+        };
+
+        Result<Transaction> result = gateway.Transaction.Sale(request);
+
+        if (result.IsSuccess())
+        {
+            return Page();
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 
     public async Task OnGet()
     {
-        ViewData["ClientToken"] = 
+        IBraintreeGateway gateway = braintreeService.getGateway();
+        clientToken = gateway.ClientToken.Generate();
+        ViewData["CLientToken"] = clientToken;
         ViewData["Error"] = "";
     }
 

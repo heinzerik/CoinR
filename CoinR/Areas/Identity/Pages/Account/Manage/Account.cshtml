@@ -5,7 +5,7 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.CodeAnalysis
 @using Microsoft.JSInterop
-@model CoinR.Models.BookPurchaseVM;
+@model Account
 <div class="fullwidth">
     <div class="left">
         <h1 class="greeting">Hi</h1>
@@ -74,7 +74,7 @@
 
             <form asp-action="AddToWatchList" asp-controller="Home" method="post" enctype="multipart/form-data">
                 <asp:dropdownlist>
-                    <select id="currencyselect" asp-for="Price" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
+                    <select id="currencyselect" asp-for="Id" asp-items="Account.currencies" name="currency" onchange="getSelectedCurrency()"></select>
                 </asp:dropdownlist>
                 <button class="watchlistbtn" type="submit" asp-page-handler="Submit" value="submit">ADD</button>
 
@@ -139,7 +139,19 @@
             @*     </table> *@
             @* </form> *@
             
-           <iframe src="/Home/Payment"></iframe>
+            <form method="post" enctype="multipart/form-data" class="payment-form">
+                        @Html.HiddenFor(n => n.Id)
+                        <section>
+                            <div class="bt-drop-in-wrapper">
+                                <div id="bt-dropin"></div>
+                            </div>
+                        </section>
+                        @Html.HiddenFor(n => n.Nonce, new { @id = "nonce" })
+                        <input type="text" name="paymentmethod" style="display: none"></input>
+                        <hr />
+                        <button class="btn btn-success" type="submit" asp-page-handler="Post" value="Post"><span>Confirm payment - </span></button>
+                    </form>
+            
         </div>
     </div>
 </div>
@@ -177,34 +189,34 @@ function sendSelectedCurrency()
       
     }
     
-    $(document).ready(function(){
+    // $(document).ready(function(){
     
-    //For Card Number formatted input
-    var cardNum = document.getElementById('cardnumber');
-    cardNum.onkeyup = function (e) {
-        if (this.value == this.lastValue) return;
-        var caretPosition = this.selectionStart;
-        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
-        var parts = [];
-        
-        for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
-            parts.push(sanitizedValue.substring(i, i + 4));
-        }
-        
-        for (var i = caretPosition - 1; i >= 0; i--) {
-            var c = this.value[i];
-            if (c < '0' || c > '9') {
-                caretPosition--;
-            }
-        }
-        caretPosition += Math.floor(caretPosition / 4);
-        
-        this.value = this.lastValue = parts.join(' ');
-        this.selectionStart = this.selectionEnd = caretPosition;
-    }
-    });
+    // //For Card Number formatted input
+    // var cardNum = document.getElementById('cardnumber');
+    // cardNum.onkeyup = function (e) {
+    //     if (this.value == this.lastValue) return;
+    //     var caretPosition = this.selectionStart;
+    //     var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+    //     var parts = [];
+    //    
+    //     for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
+    //         parts.push(sanitizedValue.substring(i, i + 4));
+    //     }
+    //    
+    //     for (var i = caretPosition - 1; i >= 0; i--) {
+    //         var c = this.value[i];
+    //         if (c < '0' || c > '9') {
+    //             caretPosition--;
+    //         }
+    //     }
+    //     caretPosition += Math.floor(caretPosition / 4);
+    //    
+    //     this.value = this.lastValue = parts.join(' ');
+    //     this.selectionStart = this.selectionEnd = caretPosition;
+    // }
+    // });
 
-    var client_token = ViewData["ClientToken"];
+        var client_token = "@ViewData["ClientToken"]";
         var form = document.querySelector('#payment-form');
     
         braintree.dropin.create({
@@ -220,6 +232,8 @@ function sendSelectedCurrency()
                     }
                   
                     document.querySelector('#nonce').value = payload.nonce;
+                    document.querySelector('#paymentmethod').innerText = payload.nonce;
+                    console.log("inner Text: " + document.querySelector('#paymentmethod').innerText);
                     form.submit();
                 });
             });
